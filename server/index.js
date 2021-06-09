@@ -38,7 +38,17 @@ server.listen(PORT, () => {
 
 io.on("connection", (socket) => {
   console.log(`A new client connected with id ${socket.id}`);
+
   sendData(socket);
+
+  socket.on("message", (payload) => {
+    console.log(`Message received on server ${payload}`);
+  });
+
+  socket.on("disconnect", () => {
+    console.log(`${socket.id} disconnected`);
+    console.log("--------------");
+  });
 });
 
 const centrePoint = {

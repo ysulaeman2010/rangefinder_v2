@@ -9,27 +9,45 @@ function App() {
   const [arrData, setArrData] = useState([]);
 
   useEffect(() => {
-    socket.on("connection");
     socket.on("data", (res) => {
       setData(res);
     });
+    socket.emit("message", "data received");
+
+    return () => {
+      socket.disconnect();
+    };
   }, []);
 
   useEffect(() => {
     setArrData([...arrData, data]);
   }, [data]);
 
-  console.log(data);
-
   return (
     <div>
       <h1>Data App</h1>
+      <h2>Rf 1</h2>
+      <p>
+        <strong>Timestamp</strong> <span>{data.timestamp}</span> {""}
+        <strong>Latitude</strong> <span>{data.lat_rf1}</span> {""}
+        <strong>Longitude</strong> <span>{data.lng_rf1}</span>
+      </p>
+      <h2>Rf 2</h2>
+      <p>
+        <strong>Timestamp</strong> <span>{data.timestamp}</span> {""}
+        <strong>Latitude</strong> <span>{data.lat_rf2}</span> {""}
+        <strong>Longitude</strong> <span>{data.lng_rf2}</span>
+      </p>
       <hr />
-      {arrData.map((item) => (
-        <p>
-          {item.timestamp} {item.lat_rf1} {item.lng_rf1}
-        </p>
-      ))}
+      <div style={{ overflow: "auto", height: "80vh" }}>
+        {arrData.map((item) => (
+          <div>
+            <p key={Math.random()}>
+              {item.timestamp} {item.lat_rf1} {item.lng_rf1}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
