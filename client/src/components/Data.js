@@ -1,7 +1,13 @@
 import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { openStream, collectData, collectDataFail } from "../data";
+import {
+  openStream,
+  collectDataD1,
+  collectDataD2,
+  collectDataD3,
+  collectDataD4,
+} from "../data";
 
 import io from "socket.io-client";
 
@@ -15,20 +21,27 @@ const Data = () => {
   useEffect(() => {
     dispatch(openStream());
 
-    try {
-      socket.on("data", (res) => {
-        dispatch(collectData(res));
-      });
-    } catch (error) {
-      dispatch(collectDataFail(error));
-    }
+    socket.on("d_1", (res) => {
+      dispatch(collectDataD1(res));
+    });
+
+    socket.on("d_2", (res) => {
+      dispatch(collectDataD2(res));
+    });
+
+    socket.on("d_3", (res) => {
+      dispatch(collectDataD3(res));
+    });
+
+    socket.on("d_4", (res) => {
+      dispatch(collectDataD4(res));
+    });
 
     return () => {
       socket.disconnect();
     };
   }, []);
 
-  console.log(data.data);
   return <div></div>;
 };
 
