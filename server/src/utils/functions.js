@@ -7,6 +7,8 @@ const centrePoint = {
   longitude: 107.7583738,
 };
 
+//d function
+
 const sendData_d1 = (socket) => {
   const current = new Date();
   const time = current.toLocaleTimeString("en-US", {
@@ -99,4 +101,85 @@ const sendData_d4 = (socket) => {
   }, 5000);
 };
 
-module.exports = { sendData_d1, sendData_d2, sendData_d3, sendData_d4 };
+//p function
+
+const sendData_p1 = (socket) => {
+  socket.emit("p_1", "sending data p_1");
+
+  setTimeout(() => {
+    sendData_p1(socket);
+  }, 5000);
+};
+
+const sendData_p2 = (socket) => {
+  socket.emit("p_2", "sending data p_2");
+
+  setTimeout(() => {
+    sendData_p2(socket);
+  }, 5000);
+};
+
+const sendData_p3 = (socket) => {
+  socket.emit("p_3", "sending data p_3");
+
+  setTimeout(() => {
+    sendData_p3(socket);
+  }, 5000);
+};
+
+const sendData_p4 = (socket) => {
+  socket.emit("p_1", "sending data p_4");
+
+  setTimeout(() => {
+    sendData_p4(socket);
+  }, 5000);
+};
+
+//c function
+
+const sendData_c1 = (socket) => {
+  socket.emit("c_1", "sending data c_1");
+
+  setTimeout(() => {
+    sendData_c1(socket);
+  }, 5000);
+};
+
+const sendData_c2 = (socket) => {
+  socket.emit("c_2", "sending data c_2");
+
+  setTimeout(() => {
+    sendData_c2(socket);
+  }, 5000);
+};
+
+const sendData_c3 = (socket) => {
+  socket.emit("c_3", "sending data c_3");
+
+  setTimeout(() => {
+    sendData_c3(socket);
+  }, 5000);
+};
+
+const sendData_c4 = (socket) => {
+  socket.emit("c_1", "sending data c_4");
+
+  setTimeout(() => {
+    sendData_c4(socket);
+  }, 5000);
+};
+
+module.exports = {
+  sendData_d1,
+  sendData_d2,
+  sendData_d3,
+  sendData_d4,
+  sendData_p1,
+  sendData_p2,
+  sendData_p3,
+  sendData_p4,
+  sendData_c1,
+  sendData_c2,
+  sendData_c3,
+  sendData_c4,
+};

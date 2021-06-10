@@ -37,6 +37,38 @@ const Data = () => {
       dispatch(collectDataD4(res));
     });
 
+    socket.on("p_1", (res) => {
+      console.log(res);
+    });
+
+    socket.on("p_2", (res) => {
+      console.log(res);
+    });
+
+    socket.on("p_3", (res) => {
+      console.log(res);
+    });
+
+    socket.on("p_4", (res) => {
+      console.log(res);
+    });
+
+    socket.on("c_1", (res) => {
+      console.log(res);
+    });
+
+    socket.on("c_2", (res) => {
+      console.log(res);
+    });
+
+    socket.on("c_3", (res) => {
+      console.log(res);
+    });
+
+    socket.on("c_4", (res) => {
+      console.log(res);
+    });
+
     return () => {
       socket.disconnect();
     };

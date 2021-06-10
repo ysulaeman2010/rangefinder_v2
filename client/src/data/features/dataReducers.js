@@ -78,6 +78,7 @@ const dataReducer = (state = initialState, action) => {
 
     case DATA_P1_COLLECT_SUCCESS: {
       return {
+        ...state,
         status: true,
         p_1: action.payload,
         error: "",
@@ -86,6 +87,7 @@ const dataReducer = (state = initialState, action) => {
 
     case DATA_P2_COLLECT_SUCCESS: {
       return {
+        ...state,
         status: true,
         p_2: action.payload,
         error: "",
@@ -94,6 +96,7 @@ const dataReducer = (state = initialState, action) => {
 
     case DATA_P3_COLLECT_SUCCESS: {
       return {
+        ...state,
         status: true,
         p_3: action.payload,
         error: "",
@@ -102,6 +105,7 @@ const dataReducer = (state = initialState, action) => {
 
     case DATA_P4_COLLECT_SUCCESS: {
       return {
+        ...state,
         status: true,
         p_4: action.payload,
         error: "",
@@ -110,6 +114,7 @@ const dataReducer = (state = initialState, action) => {
 
     case DATA_C1_COLLECT_SUCCESS: {
       return {
+        ...state,
         status: true,
         c_1: action.payload,
         error: "",
@@ -118,6 +123,7 @@ const dataReducer = (state = initialState, action) => {
 
     case DATA_C2_COLLECT_SUCCESS: {
       return {
+        ...state,
         status: true,
         c_2: action.payload,
         error: "",
@@ -126,6 +132,7 @@ const dataReducer = (state = initialState, action) => {
 
     case DATA_C3_COLLECT_SUCCESS: {
       return {
+        ...state,
         status: true,
         c_3: action.payload,
         error: "",
@@ -134,6 +141,7 @@ const dataReducer = (state = initialState, action) => {
 
     case DATA_C4_COLLECT_SUCCESS: {
       return {
+        ...state,
         status: true,
         c_4: action.payload,
         error: "",
