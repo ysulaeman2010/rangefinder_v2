@@ -140,7 +140,7 @@ const sendData_p4 = (socket) => {
 const sendData_c1 = (socket) => {
   socket.on("c1", function (data) {
     // console.log(data);
-    socket.emit("c_1", data);
+    socket.broadcast.emit("c_1", data);
     // console.log("Sent to view");
   })
 
