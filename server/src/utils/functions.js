@@ -138,7 +138,11 @@ const sendData_p4 = (socket) => {
 //c function
 
 const sendData_c1 = (socket) => {
-  socket.emit("c_1", "sending data c_1");
+  socket.on("c1", function (data) {
+    // console.log(data);
+    socket.emit("c_1", data);
+    // console.log("Sent to view");
+  })
 
   setTimeout(() => {
     sendData_c1(socket);
