@@ -1,0 +1,38 @@
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  background-color: rgb(73, 79, 82);
+  color: white;
+}
+
+.nav__logo {
+  text-decoration: none;
+  color: white;
+}
+
+.nav__logo > img {
+  width: 50%;
+}
+
+.nav__links {
+  width: 25%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+
+.nav__items {
+  text-decoration: none;
+  color: white;
+}
+
+/* ipad  */
+@media only screen and (max-width: 1024px) {
+  .nav__links {
+    width: 40%;
+    font-size: 14px;
+  }
+}

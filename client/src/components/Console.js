@@ -1,6 +1,12 @@
 import React from "react";
 import "../css/Console.css";
 
-export const Console = () => {
-  return <div></div>;
+const Console = () => {
+  return (
+    <div>
+      <h1>Console</h1>
+    </div>
+  );
 };
+
+export default Console;

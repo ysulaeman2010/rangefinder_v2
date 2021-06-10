@@ -1,54 +1,39 @@
-import React, { useState, useEffect } from "react";
-import io from "socket.io-client";
+import React from "react";
 
-const PORT = 3001;
-const socket = io(`http://localhost:${PORT}`);
+//Components
+import Config from "./components/Config";
+import Console from "./components/Console";
+import Home from "./components/Home";
+import Map from "./components/Map";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+//Router
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+//Redux
+import { Provider } from "react-redux";
+import store from "./data/store";
+
+//Leaflet
+import "leaflet/dist/leaflet.css";
+import Data from "./components/Data";
 
 function App() {
-  const [data, setData] = useState({});
-  const [arrData, setArrData] = useState([]);
-
-  useEffect(() => {
-    socket.on("data", (res) => {
-      setData(res);
-    });
-    socket.emit("message", "data received");
-
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    setArrData([...arrData, data]);
-  }, [data]);
-
   return (
-    <div>
-      <h1>Data App</h1>
-      <h2>Rf 1</h2>
-      <p>
-        <strong>Timestamp</strong> <span>{data.timestamp}</span> {""}
-        <strong>Latitude</strong> <span>{data.lat_rf1}</span> {""}
-        <strong>Longitude</strong> <span>{data.lng_rf1}</span>
-      </p>
-      <h2>Rf 2</h2>
-      <p>
-        <strong>Timestamp</strong> <span>{data.timestamp}</span> {""}
-        <strong>Latitude</strong> <span>{data.lat_rf2}</span> {""}
-        <strong>Longitude</strong> <span>{data.lng_rf2}</span>
-      </p>
-      <hr />
-      <div style={{ overflow: "auto", height: "80vh" }}>
-        {arrData.map((item) => (
-          <div>
-            <p key={Math.random()}>
-              {item.timestamp} {item.lat_rf1} {item.lng_rf1}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
+    <Provider store={store}>
+      <Data />
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path="/map" exact component={Map} />
+          <Route path="/console" exact component={Console} />
+          <Route path="/config" exact component={Config} />
+          <Route path="/" exact component={Home} />
+        </Switch>
+        <Footer />
+      </Router>
+    </Provider>
   );
 }
 
