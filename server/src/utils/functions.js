@@ -2,6 +2,7 @@ const randomLocation = require("random-location");
 const geolib = require("geolib");
 const random = require("random");
 const os = require("os-utils");
+const si = require("systeminformation");
 
 const centrePoint = {
   latitude: -6.9108191,
@@ -256,8 +257,8 @@ const sendData_c2 = (socket) => {
 
   os.cpuUsage(function (cpu_usage) {
     data = {
-      cpu_usage: cpu_usage * 100,
-      memory: memory,
+      cpu_usage: (cpu_usage * 100).toFixed(3),
+      memory: memory.toFixed(2),
     };
 
     socket.emit("c_2", data);
@@ -269,7 +270,9 @@ const sendData_c2 = (socket) => {
 };
 
 const sendData_c3 = (socket) => {
-  socket.emit("c_3", "sending data c_3");
+  si.battery().then((data) => {
+    socket.emit("c_3", data);
+  });
 
   setTimeout(() => {
     sendData_c3(socket);
@@ -277,7 +280,12 @@ const sendData_c3 = (socket) => {
 };
 
 const sendData_c4 = (socket) => {
-  socket.emit("c_4", "sending data c_4");
+  const range = random.float(0, 3000);
+  data = {
+    range: range,
+  };
+
+  socket.emit("c_4", data);
 
   setTimeout(() => {
     sendData_c4(socket);

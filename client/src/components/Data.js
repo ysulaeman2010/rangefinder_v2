@@ -70,11 +70,11 @@ const Data = () => {
     });
 
     socket.on("c_3", (res) => {
-      console.log(res);
+      dispatch(collectDataC3(res));
     });
 
     socket.on("c_4", (res) => {
-      console.log(res);
+      dispatch(collectDataC4(res));
     });
 
     return () => {
