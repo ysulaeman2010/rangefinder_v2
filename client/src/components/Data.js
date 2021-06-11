@@ -7,6 +7,14 @@ import {
   collectDataD2,
   collectDataD3,
   collectDataD4,
+  collectDataP1,
+  collectDataP2,
+  collectDataP3,
+  collectDataP4,
+  collectDataC1,
+  collectDataC2,
+  collectDataC3,
+  collectDataC4,
 } from "../data";
 
 import io from "socket.io-client";
@@ -38,35 +46,35 @@ const Data = () => {
     });
 
     socket.on("p_1", (res) => {
-      //console.log(res);
+      dispatch(collectDataP1(res));
     });
 
     socket.on("p_2", (res) => {
-      //console.log(res);
+      dispatch(collectDataP2(res));
     });
 
     socket.on("p_3", (res) => {
-      //console.log(res);
+      dispatch(collectDataP3(res));
     });
 
     socket.on("p_4", (res) => {
-      //console.log(res);
+      dispatch(collectDataP4(res));
     });
 
     socket.on("c_1", (res) => {
-      console.log(res);
+      dispatch(collectDataC1(res));
     });
 
     socket.on("c_2", (res) => {
-      //console.log(res);
+      dispatch(collectDataC2(res));
     });
 
     socket.on("c_3", (res) => {
-      //console.log(res);
+      console.log(res);
     });
 
     socket.on("c_4", (res) => {
-      //console.log(res);
+      console.log(res);
     });
 
     return () => {
