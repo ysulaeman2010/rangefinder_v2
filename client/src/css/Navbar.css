@@ -2,9 +2,10 @@ nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-height: 10vh;
+  height: 70px;
   background-color: rgb(73, 79, 82);
   color: white;
+  border: none;
 }
 
 .nav__logo {
@@ -31,6 +32,10 @@ nav {
 
 /* ipad  */
 @media only screen and (max-width: 1024px) {
+  nav {
+    height: 60px;
+  }
+
   .nav__links {
     width: 40%;
     font-size: 14px;

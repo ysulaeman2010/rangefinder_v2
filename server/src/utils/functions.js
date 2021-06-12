@@ -12,17 +12,9 @@ const centrePoint = {
 //d function
 
 const sendData_d1 = (socket) => {
-  const current = new Date();
-  const time_rf1 = current.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-  });
-
   const loc_rf1 = randomLocation.randomCirclePoint(centrePoint, 1500);
 
   const data = {
-    time_rf1: time_rf1,
     lat_rf1: loc_rf1["latitude"],
     lng_rf1: loc_rf1["longitude"],
   };
@@ -35,17 +27,9 @@ const sendData_d1 = (socket) => {
 };
 
 const sendData_d2 = (socket) => {
-  const current = new Date();
-  const time_rf2 = current.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-  });
-
   const loc_rf2 = randomLocation.randomCirclePoint(centrePoint, 1500);
 
   const data = {
-    time_rf2: time_rf2,
     lat_rf2: loc_rf2["latitude"],
     lng_rf2: loc_rf2["longitude"],
   };
@@ -58,17 +42,9 @@ const sendData_d2 = (socket) => {
 };
 
 const sendData_d3 = (socket) => {
-  const current = new Date();
-  const time_rf3 = current.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-  });
-
   const loc_rf3 = randomLocation.randomCirclePoint(centrePoint, 1500);
 
   const data = {
-    time_rf3: time_rf3,
     lat_rf3: loc_rf3["latitude"],
     lng_rf3: loc_rf3["longitude"],
   };
@@ -81,17 +57,9 @@ const sendData_d3 = (socket) => {
 };
 
 const sendData_d4 = (socket) => {
-  const current = new Date();
-  const time_rf4 = current.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-  });
-
   const loc_rf4 = randomLocation.randomCirclePoint(centrePoint, 1500);
 
   const data = {
-    time_rf4: time_rf4,
     lat_rf4: loc_rf4["latitude"],
     lng_rf4: loc_rf4["longitude"],
   };
@@ -106,6 +74,13 @@ const sendData_d4 = (socket) => {
 //p function
 
 const sendData_p1 = (socket) => {
+  const current = new Date();
+  const time_p1 = current.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+
   const loc_p1 = randomLocation.randomCirclePoint(centrePoint, 1500);
   const target = randomLocation.randomCirclePoint(centrePoint, 500);
 
@@ -118,6 +93,7 @@ const sendData_p1 = (socket) => {
   const press_p1 = random.float(0, 1);
 
   const data = {
+    time_p1: time_p1,
     lat_p1: loc_p1["latitude"],
     lng_p1: loc_p1["longitude"],
     dist_p1: dist_p1,
@@ -137,6 +113,13 @@ const sendData_p1 = (socket) => {
 };
 
 const sendData_p2 = (socket) => {
+  const current = new Date();
+  const time_p2 = current.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+
   const loc_p2 = randomLocation.randomCirclePoint(centrePoint, 1500);
   const target = randomLocation.randomCirclePoint(centrePoint, 500);
 
@@ -149,6 +132,7 @@ const sendData_p2 = (socket) => {
   const press_p2 = random.float(0, 1);
 
   const data = {
+    time_p2: time_p2,
     lat_p2: loc_p2["latitude"],
     lng_p2: loc_p2["longitude"],
     dist_p2: dist_p2,
@@ -168,6 +152,13 @@ const sendData_p2 = (socket) => {
 };
 
 const sendData_p3 = (socket) => {
+  const current = new Date();
+  const time_p3 = current.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+
   const loc_p3 = randomLocation.randomCirclePoint(centrePoint, 1500);
   const target = randomLocation.randomCirclePoint(centrePoint, 500);
 
@@ -180,6 +171,7 @@ const sendData_p3 = (socket) => {
   const press_p3 = random.float(0, 1);
 
   const data = {
+    time_p3: time_p3,
     lat_p3: loc_p3["latitude"],
     lng_p3: loc_p3["longitude"],
     dist_p3: dist_p3,
@@ -199,6 +191,13 @@ const sendData_p3 = (socket) => {
 };
 
 const sendData_p4 = (socket) => {
+  const current = new Date();
+  const time_p4 = current.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+
   const loc_p4 = randomLocation.randomCirclePoint(centrePoint, 1500);
   const target = randomLocation.randomCirclePoint(centrePoint, 500);
 
@@ -211,6 +210,7 @@ const sendData_p4 = (socket) => {
   const press_p4 = random.float(0, 1);
 
   const data = {
+    time_p4: time_p4,
     lat_p4: loc_p4["latitude"],
     lng_p4: loc_p4["longitude"],
     dist_p4: dist_p4,
@@ -257,7 +257,7 @@ const sendData_c2 = (socket) => {
 
   os.cpuUsage(function (cpu_usage) {
     data = {
-      cpu_usage: (cpu_usage * 100).toFixed(3),
+      cpu_usage: (cpu_usage * 100).toFixed(0),
       memory: memory.toFixed(2),
     };
 
@@ -266,7 +266,7 @@ const sendData_c2 = (socket) => {
 
   setTimeout(() => {
     sendData_c2(socket);
-  }, 5000);
+  }, 1000);
 };
 
 const sendData_c3 = (socket) => {

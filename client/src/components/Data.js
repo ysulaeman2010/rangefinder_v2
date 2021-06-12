@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   openStream,
+  closeStream,
   collectDataD1,
   collectDataD2,
   collectDataD3,
@@ -27,55 +28,57 @@ const Data = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(openStream());
+    try {
+      socket.on("d_1", (res) => {
+        dispatch(collectDataD1(res));
+      });
 
-    socket.on("d_1", (res) => {
-      dispatch(collectDataD1(res));
-    });
+      socket.on("d_2", (res) => {
+        dispatch(collectDataD2(res));
+      });
 
-    socket.on("d_2", (res) => {
-      dispatch(collectDataD2(res));
-    });
+      socket.on("d_3", (res) => {
+        dispatch(collectDataD3(res));
+      });
 
-    socket.on("d_3", (res) => {
-      dispatch(collectDataD3(res));
-    });
+      socket.on("d_4", (res) => {
+        dispatch(collectDataD4(res));
+      });
 
-    socket.on("d_4", (res) => {
-      dispatch(collectDataD4(res));
-    });
+      socket.on("p_1", (res) => {
+        dispatch(collectDataP1(res));
+      });
 
-    socket.on("p_1", (res) => {
-      dispatch(collectDataP1(res));
-    });
+      socket.on("p_2", (res) => {
+        dispatch(collectDataP2(res));
+      });
 
-    socket.on("p_2", (res) => {
-      dispatch(collectDataP2(res));
-    });
+      socket.on("p_3", (res) => {
+        dispatch(collectDataP3(res));
+      });
 
-    socket.on("p_3", (res) => {
-      dispatch(collectDataP3(res));
-    });
+      socket.on("p_4", (res) => {
+        dispatch(collectDataP4(res));
+      });
 
-    socket.on("p_4", (res) => {
-      dispatch(collectDataP4(res));
-    });
+      socket.on("c_1", (res) => {
+        dispatch(collectDataC1(res));
+      });
 
-    socket.on("c_1", (res) => {
-      dispatch(collectDataC1(res));
-    });
+      socket.on("c_2", (res) => {
+        dispatch(collectDataC2(res));
+      });
 
-    socket.on("c_2", (res) => {
-      dispatch(collectDataC2(res));
-    });
+      socket.on("c_3", (res) => {
+        dispatch(collectDataC3(res));
+      });
 
-    socket.on("c_3", (res) => {
-      dispatch(collectDataC3(res));
-    });
-
-    socket.on("c_4", (res) => {
-      dispatch(collectDataC4(res));
-    });
+      socket.on("c_4", (res) => {
+        dispatch(collectDataC4(res));
+      });
+    } catch (err) {
+      dispatch(closeStream(err));
+    }
 
     return () => {
       socket.disconnect();

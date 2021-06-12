@@ -1,0 +1,51 @@
+.map {
+  height: 88.5vh;
+  width: 100vw;
+}
+
+.leaflet-bottom {
+  margin-bottom: -10px;
+}
+
+.leaflet-control-scale {
+  padding: 20px;
+  margin-bottom: -10px;
+}
+
+.leaflet-control-scale .leaflet-control-scale-line {
+  background-color: white;
+  font-size: 12px;
+  font-family: "Ubuntu", sans-serif;
+  padding: 10px;
+  margin-left: 20px;
+  padding-right: 120px;
+}
+
+/* hide zoom control */
+.leaflet-top {
+  opacity: 0;
+}
+
+/* hide attribution */
+.leaflet-control-attribution {
+  opacity: 0;
+}
+
+/* ipad */
+@media only screen and (max-width: 1024px) {
+  .map {
+    height: 87vh;
+    width: 100vw;
+  }
+
+  .leaflet-bottom {
+    margin-bottom: -10px;
+  }
+
+  .leaflet-control-scale .leaflet-control-scale-line {
+    font-size: 14px;
+    padding: 10px;
+    margin-left: 10px;
+    padding-right: 120px;
+  }
+}

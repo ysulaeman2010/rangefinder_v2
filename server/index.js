@@ -35,7 +35,6 @@ server.listen(PORT, () => {
 
 io.on("connection", (socket) => {
   console.log(`A new client connected with id ${socket.id}`);
-
   // dummy data d
   fun.sendData_d1(socket);
   fun.sendData_d2(socket);

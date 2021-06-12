@@ -11,7 +11,7 @@ import {
   DATA_P2_COLLECT_SUCCESS,
   DATA_P3_COLLECT_SUCCESS,
   DATA_P4_COLLECT_SUCCESS,
-  OPEN_STREAM,
+  CLOSE_STREAM,
 } from "./dataTypes";
 
 const initialState = {
@@ -20,10 +20,54 @@ const initialState = {
   d_2: {},
   d_3: {},
   d_4: {},
-  p_1: {},
-  p_2: {},
-  p_3: {},
-  p_4: {},
+  p_1: {
+    time_p1: 0,
+    lat_p1: 0,
+    lng_p1: 0,
+    dist_p1: 0,
+    compass_p1: 0,
+    d_alti_p1: 0,
+    alti_p1: 0,
+    humid_p1: 0,
+    temp_p1: 0,
+    press_p1: 0,
+  },
+  p_2: {
+    time_p2: 0,
+    lat_p2: 0,
+    lng_p2: 0,
+    dist_p2: 0,
+    compass_p2: 0,
+    d_alti_p2: 0,
+    alti_p2: 0,
+    humid_p2: 0,
+    temp_p2: 0,
+    press_p2: 0,
+  },
+  p_3: {
+    time_p3: 0,
+    lat_p3: 0,
+    lng_p3: 0,
+    dist_p3: 0,
+    compass_p3: 0,
+    d_alti_p3: 0,
+    alti_p3: 0,
+    humid_p3: 0,
+    temp_p3: 0,
+    press_p3: 0,
+  },
+  p_4: {
+    time_p4: 0,
+    lat_p4: 0,
+    lng_p4: 0,
+    dist_p4: 0,
+    compass_p4: 0,
+    d_alti_p4: 0,
+    alti_p4: 0,
+    humid_p4: 0,
+    temp_p4: 0,
+    press_p4: 0,
+  },
   c_1: {},
   c_2: {},
   c_3: {},
@@ -33,10 +77,11 @@ const initialState = {
 
 const dataReducer = (state = initialState, action) => {
   switch (action.type) {
-    case OPEN_STREAM: {
+    case CLOSE_STREAM: {
       return {
         ...state,
-        status: true,
+        status: false,
+        error: action.payload,
       };
     }
 

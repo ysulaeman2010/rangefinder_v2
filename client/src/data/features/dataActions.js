@@ -11,12 +11,13 @@ import {
   DATA_P2_COLLECT_SUCCESS,
   DATA_P3_COLLECT_SUCCESS,
   DATA_P4_COLLECT_SUCCESS,
-  OPEN_STREAM,
+  CLOSE_STREAM,
 } from "./dataTypes";
 
-export const openStream = () => {
+export const closeStream = (err) => {
   return {
-    type: OPEN_STREAM,
+    type: CLOSE_STREAM,
+    payload: err,
   };
 };
 

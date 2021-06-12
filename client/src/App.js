@@ -6,7 +6,6 @@ import Console from "./components/Console";
 import Home from "./components/Home";
 import Map from "./components/Map";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 
 //Router
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -18,6 +17,7 @@ import store from "./data/store";
 //Leaflet
 import "leaflet/dist/leaflet.css";
 import Data from "./components/Data";
+import Footer from "./components/Footer";
 
 function App() {
   return (

@@ -1,0 +1,33 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 30px;
+  background-color: rgb(73, 79, 82);
+  color: white;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.right__footer {
+  margin-right: 30px;
+}
+
+.left__footer {
+  margin-left: 20px;
+}
+
+.break__line {
+  border-left: 1px solid lightgray;
+  height: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* ipad  */
+@media only screen and (max-width: 1024px) {
+  .footer {
+    height: 20px;
+  }
+}
