@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import {
   DATA_D1_COLLECT_SUCCESS,
   DATA_D2_COLLECT_SUCCESS,
@@ -12,10 +14,22 @@ import {
   DATA_P3_COLLECT_SUCCESS,
   DATA_P4_COLLECT_SUCCESS,
   CLOSE_STREAM,
+  DATA_ARR_P1,
+  DATA_ARR_P2,
+  DATA_ARR_P3,
+  DATA_ARR_P4,
+  DATA_RESET_P1,
+  DATA_RESET_P2,
+  DATA_RESET_P3,
+  DATA_RESET_P4,
+  API_GET_SUCCESS,
+  API_POST_SUCCESS,
+  API_ERROR,
 } from "./dataTypes";
 
 const initialState = {
   status: false,
+  fetch_status: false,
   d_1: {},
   d_2: {},
   d_3: {},
@@ -68,10 +82,16 @@ const initialState = {
     temp_p4: 0,
     press_p4: 0,
   },
+  d_arr_p1: [],
+  d_arr_p2: [],
+  d_arr_p3: [],
+  d_arr_p4: [],
   c_1: {},
   c_2: {},
   c_3: {},
   c_4: {},
+  post_feedback: [],
+  api_data: [],
   error: "",
 };
 
@@ -157,6 +177,78 @@ const dataReducer = (state = initialState, action) => {
       };
     }
 
+    case DATA_ARR_P1: {
+      return {
+        ...state,
+        status: true,
+        d_arr_p1: [...state.d_arr_p1, action.payload],
+        error: "",
+      };
+    }
+
+    case DATA_ARR_P2: {
+      return {
+        ...state,
+        status: true,
+        d_arr_p2: [...state.d_arr_p2, action.payload],
+        error: "",
+      };
+    }
+
+    case DATA_ARR_P3: {
+      return {
+        ...state,
+        status: true,
+        d_arr_p3: [...state.d_arr_p3, action.payload],
+        error: "",
+      };
+    }
+
+    case DATA_ARR_P4: {
+      return {
+        ...state,
+        status: true,
+        d_arr_p4: [...state.d_arr_p4, action.payload],
+        error: "",
+      };
+    }
+
+    case DATA_RESET_P1: {
+      return {
+        ...state,
+        status: true,
+        d_arr_p1: [],
+        error: "",
+      };
+    }
+
+    case DATA_RESET_P2: {
+      return {
+        ...state,
+        status: true,
+        d_arr_p2: [],
+        error: "",
+      };
+    }
+
+    case DATA_RESET_P3: {
+      return {
+        ...state,
+        status: true,
+        d_arr_p3: [],
+        error: "",
+      };
+    }
+
+    case DATA_RESET_P4: {
+      return {
+        ...state,
+        status: true,
+        d_arr_p4: [],
+        error: "",
+      };
+    }
+
     case DATA_C1_COLLECT_SUCCESS: {
       return {
         ...state,
@@ -190,6 +282,33 @@ const dataReducer = (state = initialState, action) => {
         status: true,
         c_4: action.payload,
         error: "",
+      };
+    }
+
+    case API_POST_SUCCESS: {
+      return {
+        ...state,
+        fetch_status: true,
+        post_feedback: action.payload,
+        error: "",
+      };
+    }
+
+    case API_GET_SUCCESS: {
+      return {
+        ...state,
+        fetch_status: true,
+        get_data: action.payload,
+        error: "",
+      };
+    }
+
+    case API_ERROR: {
+      return {
+        ...state,
+        fetch_status: false,
+        get_data: [],
+        error: action.payload,
       };
     }
 

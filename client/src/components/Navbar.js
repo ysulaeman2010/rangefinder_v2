@@ -4,10 +4,7 @@ import "../css/Navbar.css";
 import Logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 
-import { useSelector } from "react-redux";
-
 const Navbar = () => {
-  const data = useSelector((state) => state);
   return (
     <nav>
       <Link to="/" className="nav__logo">

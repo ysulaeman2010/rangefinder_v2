@@ -3,8 +3,10 @@ import "../css/Home.css";
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
+    <div className="home">
+      <div className="home__right"></div>
+      <div className="break__line"></div>
+      <div className="home__left"></div>
     </div>
   );
 };

@@ -1,0 +1,107 @@
+.console {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 86vh;
+  padding: 10px;
+}
+
+.first__container {
+  flex: 0.496;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.second__container {
+  flex: 0.496;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.console__header {
+  display: flex;
+  background-color: rgb(73, 79, 82);
+  max-width: 100%;
+  height: 40px;
+  color: white;
+  margin: 0;
+  align-items: center;
+  padding: 10px;
+}
+
+.console__content {
+  background-color: lightgray;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.console__content > p {
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.console__footer {
+  background-color: rgb(73, 79, 82);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.console__footer > button {
+  margin: 10px;
+  width: 250px;
+  height: 40px;
+  cursor: pointer;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+}
+
+.console__footer > button:hover {
+  background-color: white;
+  color: rgb(73, 79, 82);
+}
+
+/* ipad */
+@media only screen and (max-width: 1024px) {
+  .console {
+    height: 84.3vh;
+  }
+
+  .first__container {
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  .second__container {
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+
+  .console__header {
+    height: 30px;
+  }
+
+  .console__content {
+    height: 60vh;
+  }
+
+  .console__content > p {
+    font-size: 10px;
+  }
+
+  .console__footer {
+    height: 60px;
+  }
+
+  .console__footer > button {
+    margin: 10px;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+  }
+}

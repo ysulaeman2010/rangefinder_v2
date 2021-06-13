@@ -23,6 +23,9 @@ const Footer = () => {
         <span className="break__line" />
         <strong>Free Memory:</strong>{" "}
         {data.c_2.memory > 0 ? <>{data.c_2.memory}</> : 0} GB
+        <span className="break__line" />
+        <strong>Battery</strong>{" "}
+        {data.c_3.currentCapacity ? <>{data.c_3.currentCapacity}%</> : <>-</>}
       </div>
     </div>
   );

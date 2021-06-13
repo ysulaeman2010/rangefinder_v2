@@ -1,0 +1,86 @@
+.config {
+  display: flex;
+  height: 88vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.config__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: lightgray;
+}
+
+.config__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(73, 79, 82);
+  width: 100%;
+  height: 60px;
+}
+
+.config__header > label {
+  color: white;
+  font-size: 20px;
+}
+
+.config__content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.config__group {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.config__group > label {
+  margin-right: 50px;
+}
+
+.config__group > input {
+  padding: 10px;
+  border: lightgray;
+  width: 250px;
+}
+
+.config__group > input:focus {
+  outline: none;
+}
+
+.config__footer {
+  display: flex;
+  background-color: rgb(73, 79, 82);
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 70px;
+  margin-top: 20px;
+}
+
+.config__footer > button {
+  padding: 10px;
+  width: 200px;
+  cursor: pointer;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+}
+
+.config__footer > button:hover {
+  background-color: white;
+  color: rgb(73, 79, 82);
+}
+
+/* ipad */
+@media only screen and (max-width: 1024px) {
+  .config {
+    height: 87vh;
+  }
+}

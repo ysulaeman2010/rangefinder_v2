@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
-  openStream,
   closeStream,
   collectDataD1,
   collectDataD2,
@@ -16,6 +15,10 @@ import {
   collectDataC2,
   collectDataC3,
   collectDataC4,
+  collectDataArrP1,
+  collectDataArrP2,
+  collectDataArrP3,
+  collectDataArrP4,
 } from "../data";
 
 import io from "socket.io-client";
@@ -24,7 +27,6 @@ const PORT = 3001;
 const socket = io(`http://localhost:${PORT}`);
 
 const Data = () => {
-  const data = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -47,18 +49,22 @@ const Data = () => {
 
       socket.on("p_1", (res) => {
         dispatch(collectDataP1(res));
+        dispatch(collectDataArrP1(res));
       });
 
       socket.on("p_2", (res) => {
         dispatch(collectDataP2(res));
+        dispatch(collectDataArrP2(res));
       });
 
       socket.on("p_3", (res) => {
         dispatch(collectDataP3(res));
+        dispatch(collectDataArrP3(res));
       });
 
       socket.on("p_4", (res) => {
         dispatch(collectDataP4(res));
+        dispatch(collectDataArrP4(res));
       });
 
       socket.on("c_1", (res) => {
@@ -85,7 +91,7 @@ const Data = () => {
     };
   }, []);
 
-  return <div></div>;
+  return <React.Fragment></React.Fragment>;
 };
 
 export default Data;
