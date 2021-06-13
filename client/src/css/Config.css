@@ -1,6 +1,6 @@
 .config {
   display: flex;
-  height: 88vh;
+  height: 88.2vh;
   align-items: center;
   justify-content: center;
 }
@@ -31,6 +31,13 @@
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+}
+
+.config__content > p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0px;
 }
 
 .config__group {
@@ -81,6 +88,6 @@
 /* ipad */
 @media only screen and (max-width: 1024px) {
   .config {
-    height: 87vh;
+    height: 87.2vh;
   }
 }

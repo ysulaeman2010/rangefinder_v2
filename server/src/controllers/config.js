@@ -12,6 +12,8 @@ exports.config = (request, response, next) => {
     },
   };
 
+  console.log(result);
+
   response.status(201).json(result);
   next();
 };

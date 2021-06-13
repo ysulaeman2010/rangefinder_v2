@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import L from "leaflet";
 import SoldierIcon from "../assets/soldier.png";
 import TankIcon from "../assets/tank.png";
@@ -71,7 +71,7 @@ const Map = () => {
       className="map"
       center={[lat_center, lng_center]}
       zoom={15}
-      scrollWheelZoom={false}
+      scrollWheelZoom={true}
     >
       <MapScale />
       <ChangeView center={[lat_center, lng_center]} zoom={15} />

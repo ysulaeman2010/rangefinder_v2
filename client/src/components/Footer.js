@@ -22,9 +22,9 @@ const Footer = () => {
         {data.c_2.cpu_usage > 0 ? <>{data.c_2.cpu_usage}</> : 0}%
         <span className="break__line" />
         <strong>Free Memory:</strong>{" "}
-        {data.c_2.memory > 0 ? <>{data.c_2.memory}</> : 0} GB
+        {data.c_2.memory > 0 ? <>{data.c_2.memory}</> : 0}%
         <span className="break__line" />
-        <strong>Battery</strong>{" "}
+        <strong>Battery:</strong>{" "}
         {data.c_3.currentCapacity ? <>{data.c_3.currentCapacity}%</> : <>-</>}
       </div>
     </div>

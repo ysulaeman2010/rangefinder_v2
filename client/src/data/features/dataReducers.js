@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import {
   DATA_D1_COLLECT_SUCCESS,
   DATA_D2_COLLECT_SUCCESS,

@@ -248,7 +248,7 @@ const sendData_c1 = (socket) => {
 };
 
 const sendData_c2 = (socket) => {
-  const memory = os.freemem() / 1024;
+  const memory = (os.freemem() / 1024 / 64) * 100;
 
   os.cpuUsage(function (cpu_usage) {
     data = {

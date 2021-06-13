@@ -6,9 +6,11 @@ import "../css/Config.css";
 const Config = () => {
   const data = useSelector((state) => state);
   const dispatch = useDispatch();
+
   const [id, setId] = useState("");
   const [port, setPort] = useState("");
   const [baudrate, setBaudrate] = useState("");
+  const [status, setStatus] = useState(false);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -21,6 +23,10 @@ const Config = () => {
 
     dispatch(setConfigure(data_config));
     console.log(data.post_feedback);
+    setStatus(!status);
+    setId("");
+    setPort("");
+    setBaudrate("");
   };
 
   return (
@@ -63,6 +69,7 @@ const Config = () => {
               require
             />
           </div>
+          {status && <p>Data berhasil terkirim</p>}
           <div className="config__footer">
             <button onClick={submitHandler}>Submit</button>
           </div>

@@ -3,7 +3,7 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  height: 86vh;
+  height: 86.2vh;
   padding: 10px;
 }
 
@@ -69,7 +69,7 @@
 /* ipad */
 @media only screen and (max-width: 1024px) {
   .console {
-    height: 84.3vh;
+    height: 84.7vh;
   }
 
   .first__container {

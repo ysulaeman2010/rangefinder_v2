@@ -1,10 +1,86 @@
 .home {
-  height: 87vh;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+  height: 88.5vh;
+  width: 100vw;
+}
+
+.home__right {
+  flex: 0.49;
+  display: flex;
+  justify-content: center;
+}
+
+.home__right > img {
+  width: 45%;
+}
+
+.home__center {
+  flex: 0.02;
+  border-right: 1px solid lightgray;
+  height: 80vh;
+}
+
+.home__left {
+  flex: 0.49;
+  display: flex;
+  justify-content: center;
+}
+
+.left__content {
+  max-width: 700px;
+}
+
+.left__content > h1 {
+  letter-spacing: 2px;
+  font-family: "Comfortaa", cursive;
+  color: rgb(73, 79, 82);
+}
+
+.left__content > p {
+  text-align: justify;
+  margin-bottom: 20px;
+}
+
+.left__content_button {
+  width: 250px;
+  height: 50px;
+  cursor: pointer;
+  border: 1px solid white;
+  background-color: rgb(73, 79, 82);
+  color: white;
+}
+
+.left__content_button:hover {
+  border: 1px solid lightgray;
+  background-color: white;
+  color: rgb(73, 79, 82);
 }
 
 /* ipad */
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1366px) {
   .home {
-    height: 84vh;
+    height: 87.2vh;
+  }
+
+  .left__content {
+    max-width: 420px;
+  }
+
+  .left__content > h1 {
+    font-size: 24px;
+  }
+
+  .left__content > p {
+    font-size: 14px;
+  }
+
+  .left__content_button {
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
   }
 }

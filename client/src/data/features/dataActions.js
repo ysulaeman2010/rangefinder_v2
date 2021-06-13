@@ -199,7 +199,7 @@ export const setConfigure = ({ id, port, baudrate }) => {
         baudrate: baudrate,
       })
       .then((res) => {
-        dispatch(apiPostData(res));
+        dispatch(apiPostData(res.data.data));
       })
       .catch((err) => dispatch(apiError(err.message)));
   };
