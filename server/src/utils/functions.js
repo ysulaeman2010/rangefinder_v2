@@ -288,6 +288,7 @@ const sendData_c4 = (socket) => {
 };
 
 module.exports = {
+  time,
   sendData_d1,
   sendData_d2,
   sendData_d3,

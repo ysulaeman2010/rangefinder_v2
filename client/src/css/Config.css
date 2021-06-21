@@ -7,7 +7,7 @@
 
 .config__container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   background-color: lightgray;
@@ -30,7 +30,6 @@
 .config__content {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
 }
 
 .config__content > p {

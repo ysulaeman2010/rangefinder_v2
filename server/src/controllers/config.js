@@ -1,19 +1,38 @@
-exports.config = (request, response, next) => {
-  const id = request.body.id;
-  const port = request.body.port;
-  const baudrate = request.body.baudrate;
+const db = require("nedb");
+const fun = require("../utils/functions");
+
+const database = new db("database.db");
+database.loadDatabase();
+
+exports.postData = (req, res, next) => {
+  const id = req.body.id;
+  const port = req.body.port;
+  const baudrate = req.body.baudrate;
 
   const result = {
-    message: "configure data success",
-    data: {
-      id: id,
-      port: port,
-      baudrate: baudrate,
-    },
+    timestamp: fun.time(),
+    id: id,
+    port: port,
+    baudrate: baudrate,
   };
 
   console.log(result);
+  database.insert(result);
 
-  response.status(201).json(result);
+  res.status(201).json(result);
   next();
+};
+
+exports.getData = (req, res, next) => {
+  database.find({}, (err, data) => {
+    if (err) {
+      const error = {
+        errMessage: err,
+      };
+      res.json(error);
+      return;
+    }
+    res.status(201).json(data);
+    next();
+  });
 };

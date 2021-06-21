@@ -193,7 +193,7 @@ export const apiError = (error) => {
 export const setConfigure = ({ id, port, baudrate }) => {
   return (dispatch) => {
     axios
-      .post("http://localhost:3001/v2/config", {
+      .post("http://localhost:3001/v2/config/post", {
         id: id,
         port: port,
         baudrate: baudrate,
@@ -201,6 +201,18 @@ export const setConfigure = ({ id, port, baudrate }) => {
       .then((res) => {
         dispatch(apiPostData(res.data.data));
       })
-      .catch((err) => dispatch(apiError(err.message)));
+      .catch((err) => dispatch(apiError(err)));
+  };
+};
+
+export const getConfigure = () => {
+  return (dispatch) => {
+    axios
+      .get("http://localhost:3001/v2/config/get")
+      .then((res) => {
+        const dataDB = res.data;
+        dispatch(apiGetData(dataDB));
+      })
+      .catch((err) => dispatch(apiError(err)));
   };
 };

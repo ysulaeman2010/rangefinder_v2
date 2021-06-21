@@ -12,11 +12,7 @@ const Footer = () => {
       </div>
       <div className="right__footer">
         <strong>Status:</strong>{" "}
-        {data.status === true ? (
-          <label>Connected</label>
-        ) : (
-          <label>Disconnected</label>
-        )}
+        {data.status ? <label>Connected</label> : <label>Disconnected</label>}
         <span className="break__line" />
         <strong>CPU Usage:</strong>{" "}
         {data.c_2.cpu_usage > 0 ? <>{data.c_2.cpu_usage}</> : 0}%

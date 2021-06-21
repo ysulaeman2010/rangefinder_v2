@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setConfigure } from "../data";
+import { setConfigure, getConfigure } from "../data";
 import "../css/Config.css";
 
 const Config = () => {
@@ -10,7 +10,6 @@ const Config = () => {
   const [id, setId] = useState("");
   const [port, setPort] = useState("");
   const [baudrate, setBaudrate] = useState("");
-  const [status, setStatus] = useState(false);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -23,19 +22,22 @@ const Config = () => {
 
     dispatch(setConfigure(data_config));
     console.log(data.post_feedback);
-    setStatus(!status);
     setId("");
     setPort("");
     setBaudrate("");
   };
 
+  useEffect(() => {
+    dispatch(getConfigure());
+  });
+
   return (
     <div className="config">
       <div className="config__container">
-        <div className="config__header">
-          <label>Observer Configuration</label>
-        </div>
         <div className="config__content">
+          <div className="config__header">
+            <label>Observer Configuration</label>
+          </div>
           <div className="config__group">
             <label>ID Pengamat</label>
             <input
@@ -69,7 +71,6 @@ const Config = () => {
               require
             />
           </div>
-          {status && <p>Data berhasil terkirim</p>}
           <div className="config__footer">
             <button onClick={submitHandler}>Submit</button>
           </div>
