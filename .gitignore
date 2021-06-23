@@ -65,3 +65,4 @@ data
 config
 build
 .build
+*.db
