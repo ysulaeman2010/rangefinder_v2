@@ -190,11 +190,11 @@ export const apiError = (error) => {
   };
 };
 
-export const setConfigure = ({ id, port, baudrate }) => {
+export const setConfigure = ({ name, port, baudrate }) => {
   return (dispatch) => {
     axios
       .post("http://localhost:3001/v2/config/post", {
-        id: id,
+        name: name,
         port: port,
         baudrate: baudrate,
       })

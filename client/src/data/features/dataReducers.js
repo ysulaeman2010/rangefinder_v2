@@ -89,7 +89,7 @@ const initialState = {
   c_3: {},
   c_4: {},
   post_feedback: [],
-  api_data: [],
+  get_data: [],
   error: "",
 };
 
@@ -99,6 +99,15 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         status: false,
+
+        d_arr_p1: [],
+        d_arr_p2: [],
+        d_arr_p3: [],
+        d_arr_p4: [],
+        c_1: {},
+        c_2: {},
+        c_3: {},
+        c_4: {},
         error: action.payload,
       };
     }

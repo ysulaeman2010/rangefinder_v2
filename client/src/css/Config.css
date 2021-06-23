@@ -60,6 +60,16 @@
   outline: none;
 }
 
+.config__group > select {
+  width: 270px;
+  height: 40px;
+  border: lightgray;
+}
+
+.config__group > select:focus {
+  outline: none;
+}
+
 .config__footer {
   display: flex;
   background-color: rgb(73, 79, 82);

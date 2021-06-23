@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setConfigure, getConfigure } from "../data";
+import { setConfigure } from "../data";
+
 import "../css/Config.css";
 
 const Config = () => {
-  const data = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const [id, setId] = useState("");
+  const [name, setName] = useState("");
   const [port, setPort] = useState("");
   const [baudrate, setBaudrate] = useState("");
 
@@ -15,21 +15,22 @@ const Config = () => {
     e.preventDefault();
 
     const data_config = {
-      id: id,
+      name: name,
       port: port,
       baudrate: baudrate,
     };
 
+    console.log(port);
+
     dispatch(setConfigure(data_config));
-    console.log(data.post_feedback);
-    setId("");
-    setPort("");
-    setBaudrate("");
   };
 
-  useEffect(() => {
-    dispatch(getConfigure());
-  });
+  const defaultPort = [
+    "/dev/ttyUSB0",
+    "/dev/ttyUSB1",
+    "/dev/ttyUSB2",
+    "/dev/ttyUSB3",
+  ];
 
   return (
     <div className="config">
@@ -39,26 +40,31 @@ const Config = () => {
             <label>Observer Configuration</label>
           </div>
           <div className="config__group">
-            <label>ID Pengamat</label>
+            <label>Nama Pengamat</label>
             <input
               type="text"
               name="id"
-              onChange={(e) => setId(e.target.value)}
-              value={id}
-              placeholder="Masukkan ID Pengamat"
-              require
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+              placeholder="Masukkan nama pengamat"
+              autoComplete="off"
             />
           </div>
+
           <div className="config__group">
             <label>Port</label>
-            <input
-              type="text"
+            <select
               name="port"
+              id="port"
               onChange={(e) => setPort(e.target.value)}
-              value={port}
-              placeholder="Masukkan PORT yang digunakan"
-              require
-            />
+            >
+              <option>Pilih PORT yang digunakan</option>
+              {defaultPort.map((item, i) => (
+                <option value={item} key={i}>
+                  {item}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="config__group">
             <label>Baudrate</label>
@@ -68,9 +74,10 @@ const Config = () => {
               onChange={(e) => setBaudrate(e.target.value)}
               value={baudrate}
               placeholder="Masukkan BAUDRATE yang digunakan"
-              require
+              autoComplete="off"
             />
           </div>
+
           <div className="config__footer">
             <button onClick={submitHandler}>Submit</button>
           </div>

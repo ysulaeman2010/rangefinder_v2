@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { resetDataArr1, resetDataArr2 } from "../data";
+import { resetDataArr1, resetDataArr2, getConfigure } from "../data";
 import { downloadTxtFile } from "../utils/functions";
 
 import "../css/Console.css";
@@ -10,6 +10,17 @@ const Console = () => {
   const dispatch = useDispatch();
   const data_container_1 = document.getElementById("console__content_1");
   const data_container_2 = document.getElementById("console__content_2");
+
+  const nameHandler = (name, index) => {
+    const pengamatLength = data.get_data.length;
+    let nama = name;
+    if (pengamatLength < 2) {
+      nama = name;
+    } else {
+      nama = data.get_data[index].name;
+    }
+    return nama;
+  };
 
   const saveHandlerOne = (e) => {
     e.preventDefault();
@@ -47,10 +58,14 @@ const Console = () => {
     }
   }, [data.d_arr_p2]);
 
+  useEffect(() => {
+    dispatch(getConfigure());
+  }, []);
+
   return (
     <div className="console">
       <div className="first__container">
-        <div className="console__header">Pengamat Satu</div>
+        <div className="console__header">{nameHandler("Pengamat Satu", 0)}</div>
         <div className="console__content" id="console__content_1">
           {data.d_arr_p1.map((item, index) => (
             <p key={index}>
@@ -68,7 +83,7 @@ const Console = () => {
         </div>
       </div>
       <div className="second__container">
-        <div className="console__header">Pengamat Dua</div>
+        <div className="console__header">{nameHandler("Pengamat Dua", 1)}</div>
         <div className="console__content" id="console__content_2">
           {data.d_arr_p2.map((item, index) => (
             <p key={index}>

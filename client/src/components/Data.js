@@ -19,6 +19,7 @@ import {
   collectDataArrP2,
   collectDataArrP3,
   collectDataArrP4,
+  getConfigure,
 } from "../data";
 
 import io from "socket.io-client";
@@ -85,6 +86,10 @@ const Data = () => {
     } catch (err) {
       dispatch(closeStream(err));
     }
+
+    socket.on("disconnect", () => {
+      dispatch(closeStream());
+    });
 
     return () => {
       socket.disconnect();
