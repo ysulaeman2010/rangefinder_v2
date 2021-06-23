@@ -41,7 +41,7 @@ exports.postData = (req, res, next) => {
   };
 
   console.log(result);
-  conn ? client.publish("pconf", JSON.stringify({ stat: 'add', id: result._id, port: result.port, baudrate: result.baudrate })) : result = result;
+  conn ? client.publish("pconf", JSON.stringify({ stat: 'add', id: result._id, port: result.port, baudrate: result.baudrate })) : console.log('not send');
   database.insert(result);
 
   res.status(201).json(result);
@@ -88,7 +88,7 @@ exports.patchData = (req, res, next) => {
           res.json(error);
           return;
         }
-        conn ? client.publish("pconf", JSON.stringify({ stat: 'mod', id: req.query.id, port: req.body.port })) : replaced = replaced;
+        conn ? client.publish("pconf", JSON.stringify({ stat: 'mod', id: req.query.id, port: req.body.port })) : console.log('not send');
         res.status(200).send(replaced);
         next();
       });
@@ -101,7 +101,7 @@ exports.patchData = (req, res, next) => {
           res.json(error);
           return;
         }
-        conn ? client.publish("pconf", JSON.stringify({ stat: 'mod', id: req.query.id, baudrate: req.body.baudrate })) : replaced = replaced;
+        conn ? client.publish("pconf", JSON.stringify({ stat: 'mod', id: req.query.id, baudrate: req.body.baudrate })) : console.log('not send');
         res.status(200).send(replaced);
         next();
       });
@@ -114,7 +114,7 @@ exports.patchData = (req, res, next) => {
           res.json(error);
           return;
         }
-        conn ? client.publish("pconf", JSON.stringify({ stat: 'mod', id: req.query.id, port: req.body.port, baudrate: req.body.baudrate })) : replaced = replaced;
+        conn ? client.publish("pconf", JSON.stringify({ stat: 'mod', id: req.query.id, port: req.body.port, baudrate: req.body.baudrate })) : console.log('not send');
         res.status(200).send(replaced);
         next();
       });
@@ -140,7 +140,7 @@ exports.deleteData = (req, res, next) => {
         res.json(error);
         return;
       }
-      conn ? client.publish("pconf", JSON.stringify({ stat: 'del', id: req.query.id })) : removed = removed;
+      conn ? client.publish("pconf", JSON.stringify({ stat: 'del', id: req.query.id })) : console.log('not send');
       res.status(200).send(removed);
       next();
     });
