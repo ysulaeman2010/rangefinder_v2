@@ -109,3 +109,24 @@ exports.patchData = (req, res, next) => {
   }
 
 };
+
+exports.deleteData = (req, res, next) => {
+  if (req.query.id) {
+    database.remove({ _id: req.query.id }, {}, function (err, removed) {
+      // numRemoved = 1
+      if (err) {
+        const error = {
+          errMessage: err,
+        };
+        res.json(error);
+        return;
+      }
+      res.status(200).send(removed);
+      next();
+    });
+  } else {
+    res.status(400);
+    next();
+  }
+
+};
