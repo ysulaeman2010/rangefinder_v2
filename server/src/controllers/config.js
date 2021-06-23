@@ -5,11 +5,27 @@ const fun = require("../utils/functions");
 
 const nanoid = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyz', 16);
 
-
 const database = new db("database.db");
 database.loadDatabase();
 
+var conn = false
+
 const client = mqtt.connect("mqtt://127.0.0.1");
+client.on('connect', function () {
+  conn = true
+});
+
+client.on('disconnect', (err) => {
+	conn = false
+});
+
+client.on('offline', (err) => {
+	conn = false
+});
+
+client.on('error', (err) => {
+	conn = false
+});
 
 exports.postData = (req, res, next) => {
   const name = req.body.id;
@@ -25,7 +41,7 @@ exports.postData = (req, res, next) => {
   };
 
   console.log(result);
-  client.publish("pconf", JSON.stringify(result));
+  conn ? client.publish("pconf", JSON.stringify({ stat: 'add', id: result._id, port: result.port, baudrate: result.baudrate })) : result = result;
   database.insert(result);
 
   res.status(201).json(result);
@@ -72,6 +88,7 @@ exports.patchData = (req, res, next) => {
           res.json(error);
           return;
         }
+        conn ? client.publish("pconf", JSON.stringify({ stat: 'mod', id: req.query.id, port: req.body.port })) : replaced = replaced;
         res.status(200).send(replaced);
         next();
       });
@@ -84,6 +101,7 @@ exports.patchData = (req, res, next) => {
           res.json(error);
           return;
         }
+        conn ? client.publish("pconf", JSON.stringify({ stat: 'mod', id: req.query.id, baudrate: req.body.baudrate })) : replaced = replaced;
         res.status(200).send(replaced);
         next();
       });
@@ -96,6 +114,7 @@ exports.patchData = (req, res, next) => {
           res.json(error);
           return;
         }
+        conn ? client.publish("pconf", JSON.stringify({ stat: 'mod', id: req.query.id, port: req.body.port, baudrate: req.body.baudrate })) : replaced = replaced;
         res.status(200).send(replaced);
         next();
       });
@@ -121,6 +140,7 @@ exports.deleteData = (req, res, next) => {
         res.json(error);
         return;
       }
+      conn ? client.publish("pconf", JSON.stringify({ stat: 'del', id: req.query.id })) : removed = removed;
       res.status(200).send(removed);
       next();
     });
