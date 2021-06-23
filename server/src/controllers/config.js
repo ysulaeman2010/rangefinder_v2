@@ -1,11 +1,15 @@
 const db = require("nedb");
+const mqtt = require("mqtt");
 const { customAlphabet } = require('nanoid');
 const fun = require("../utils/functions");
+
 const nanoid = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyz', 16);
 
 
 const database = new db("database.db");
 database.loadDatabase();
+
+const client = mqtt.connect("mqtt://127.0.0.1");
 
 exports.postData = (req, res, next) => {
   const name = req.body.id;
@@ -21,11 +25,13 @@ exports.postData = (req, res, next) => {
   };
 
   console.log(result);
+  client.publish("pconf", JSON.stringify(result));
   database.insert(result);
 
   res.status(201).json(result);
   next();
 };
+
 // darvm6u0whxwmpc7
 exports.getData = (req, res, next) => {
   if (req.query.id) {
@@ -53,4 +59,53 @@ exports.getData = (req, res, next) => {
       next();
     });
   }
+};
+
+exports.patchData = (req, res, next) => {
+  if (req.query.id) {
+    if (req.body.port) {
+      database.update({ _id: req.query.id}, { $set: { port: req.body.port} }, {}, (err, replaced) => {
+        if (err) {
+          const error = {
+            errMessage: err,
+          };
+          res.json(error);
+          return;
+        }
+        res.status(200).send(replaced);
+        next();
+      });
+    } else if (req.body.baudrate) {
+      database.update({ _id: req.query.id}, { $set: { baudrate: req.body.baudrate } }, {}, (err, replaced) => {
+        if (err) {
+          const error = {
+            errMessage: err,
+          };
+          res.json(error);
+          return;
+        }
+        res.status(200).send(replaced);
+        next();
+      });
+    } else if (req.body.port && req.body.baudrate) {
+      database.update({ _id: req.query.id}, { $set: { port: req.body.port, baudrate: req.body.baudrate } }, {}, (err, replaced) => {
+        if (err) {
+          const error = {
+            errMessage: err,
+          };
+          res.json(error);
+          return;
+        }
+        res.status(200).send(replaced);
+        next();
+      });
+    } else {
+      res.status(200);
+      next();
+    }
+  } else {
+    res.status(400);
+    next();
+  }
+
 };
