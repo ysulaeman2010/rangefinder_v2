@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post("/config/post/", configController.postData);
 router.get("/config/get/", configController.getData);
-router.get("/config/get/:id", configController.getDataById);
+router.patch("/config/patch/", configController.patchData);
+router.delete("/config/delete/", configController.deleteData);
 
 module.exports = router;

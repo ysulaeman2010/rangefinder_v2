@@ -19,7 +19,6 @@ import {
   collectDataArrP2,
   collectDataArrP3,
   collectDataArrP4,
-  getConfigure,
 } from "../data";
 
 import io from "socket.io-client";
