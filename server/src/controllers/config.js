@@ -28,15 +28,29 @@ exports.postData = (req, res, next) => {
 };
 // darvm6u0whxwmpc7
 exports.getData = (req, res, next) => {
-  database.find({ _id: req.params.id }, (err, data) => {
-    if (err) {
-      const error = {
-        errMessage: err,
-      };
-      res.json(error);
-      return;
-    }
-    res.status(201).json(data);
-    next();
-  });
+  if (req.query.id) {
+    database.find({ _id: req.params.id }, (err, data) => {
+      if (err) {
+        const error = {
+          errMessage: err,
+        };
+        res.json(error);
+        return;
+      }
+      res.status(200).json(data);
+      next();
+    });
+  } else {
+    database.find({}, (err, data) => {
+      if (err) {
+        const error = {
+          errMessage: err,
+        };
+        res.json(error);
+        return;
+      }
+      res.status(200).json(data);
+      next();
+    });
+  }
 };
