@@ -37,3 +37,15 @@ export const downloadTxtFile = (data, obs) => {
   document.body.appendChild(element); // Required for this to work in FireFox
   element.click();
 };
+
+export const compare = (a, b) => {
+  if (a.timestamp > b.timestamp) {
+    return -1;
+  }
+
+  if (a.timestamp < b.timestamp) {
+    return 1;
+  }
+
+  return 0;
+};

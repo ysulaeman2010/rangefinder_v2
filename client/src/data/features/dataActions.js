@@ -21,9 +21,9 @@ import {
   DATA_RESET_P2,
   DATA_RESET_P3,
   DATA_RESET_P4,
-  API_POST_SUCCESS,
   API_GET_SUCCESS,
   API_ERROR,
+  API_GET_BYID_SUCCESS,
 } from "./dataTypes";
 
 export const closeStream = (err) => {
@@ -169,16 +169,16 @@ export const resetDataArr4 = () => {
   };
 };
 
-export const apiPostData = (data) => {
+export const apiGetData = (data) => {
   return {
-    type: API_POST_SUCCESS,
+    type: API_GET_SUCCESS,
     payload: data,
   };
 };
 
-export const apiGetData = (data) => {
+export const apiGetByData = (data) => {
   return {
-    type: API_GET_SUCCESS,
+    type: API_GET_BYID_SUCCESS,
     payload: data,
   };
 };
@@ -199,8 +199,20 @@ export const setConfigure = ({ name, port, baudrate }) => {
         baudrate: baudrate,
       })
       .then((res) => {
-        dispatch(apiPostData(res.data.data));
+        console.log(res);
       })
+      .catch((err) => dispatch(apiError(err)));
+  };
+};
+
+export const editConfigure = ({ id, port, baudrate }) => {
+  return (dispatch) => {
+    axios
+      .patch(`http://localhost:3001/v2/config/patch?id=${id}`, {
+        port: port,
+        baudrate: baudrate,
+      })
+      .then((res) => console.log(res))
       .catch((err) => dispatch(apiError(err)));
   };
 };
@@ -213,6 +225,27 @@ export const getConfigure = () => {
         const dataDB = res.data;
         dispatch(apiGetData(dataDB));
       })
+      .catch((err) => dispatch(apiError(err)));
+  };
+};
+
+export const getByIdConfigure = (id) => {
+  return (dispatch) => {
+    axios
+      .get(`http://localhost:3001/v2/config/get?=${id}`)
+      .then((res) => {
+        const getById = res.data;
+        dispatch(apiGetByData(getById));
+      })
+      .catch((err) => dispatch(apiError(err)));
+  };
+};
+
+export const deleteConfigure = (id) => {
+  return (dispatch) => {
+    axios
+      .delete(`http://localhost:3001/v2/config/delete?id=${id}`)
+      .then((res) => console.log(res))
       .catch((err) => dispatch(apiError(err)));
   };
 };

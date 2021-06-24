@@ -112,7 +112,7 @@ exports.patchData = (req, res, next) => {
                 })
               )
             : (replaced = replaced);
-          res.status(200).send(replaced);
+          res.status(200).send("");
           next();
         }
       );
@@ -139,7 +139,7 @@ exports.patchData = (req, res, next) => {
                 })
               )
             : (replaced = replaced);
-          res.status(200).send(replaced);
+          res.status(200).send("");
           next();
         }
       );
@@ -190,6 +190,7 @@ exports.deleteData = (req, res, next) => {
           errMessage: err,
         };
         res.json(error);
+
         return;
       }
       conn
@@ -198,7 +199,8 @@ exports.deleteData = (req, res, next) => {
             JSON.stringify({ stat: "del", id: req.query.id })
           )
         : (removed = removed);
-      res.status(200).send(removed);
+
+      res.status(200).send("");
       next();
     });
   } else {

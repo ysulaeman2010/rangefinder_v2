@@ -21,8 +21,8 @@ import {
   DATA_RESET_P3,
   DATA_RESET_P4,
   API_GET_SUCCESS,
-  API_POST_SUCCESS,
   API_ERROR,
+  API_GET_BYID_SUCCESS,
 } from "./dataTypes";
 
 const initialState = {
@@ -90,6 +90,7 @@ const initialState = {
   c_4: {},
   post_feedback: [],
   get_data: [],
+  get_single_data: [],
   error: "",
 };
 
@@ -292,20 +293,20 @@ const dataReducer = (state = initialState, action) => {
       };
     }
 
-    case API_POST_SUCCESS: {
-      return {
-        ...state,
-        fetch_status: true,
-        post_feedback: action.payload,
-        error: "",
-      };
-    }
-
     case API_GET_SUCCESS: {
       return {
         ...state,
         fetch_status: true,
         get_data: action.payload,
+        error: "",
+      };
+    }
+
+    case API_GET_BYID_SUCCESS: {
+      return {
+        ...state,
+        fetch_status: true,
+        get_single_data: action.payload,
         error: "",
       };
     }

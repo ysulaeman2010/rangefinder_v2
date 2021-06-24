@@ -1,18 +1,58 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { getConfigure } from "../data";
+import { getConfigure, deleteConfigure } from "../data";
+import { compare } from "../utils/functions";
 
 import "../css/Config.css";
 
 const Config = () => {
   const data = useSelector((state) => state.get_data);
-  const status = useSelector((state) => state.fetch_status);
+  const single_data = useSelector((state) => state.get_single_data);
+
   const dispatch = useDispatch();
 
   const [showModal, setShowModal] = useState(false);
+  const [editData, setEditData] = useState({
+    title: "Edit Pengamat",
+    status: true,
+    id: null,
+    name: "",
+    port: "",
+    baudrate: "",
+    buttonTitle: "Edit",
+  });
 
   const modalHandler = () => {
+    setEditData({
+      title: "Tambah Pengamat",
+      status: false,
+      id: null,
+      name: "",
+      port: "",
+      baudrate: "",
+      buttonTitle: "Tambah",
+    });
+    setShowModal((prev) => !prev);
+  };
+
+  const deleteHandler = (id) => {
+    dispatch(deleteConfigure(id));
+  };
+
+  const editHandler = (e) => {
+    const filterData = data.filter((item) => item._id === e.target.value);
+
+    setEditData({
+      title: "Edit Pengamat",
+      staus: true,
+      id: filterData[0]._id,
+      name: filterData[0].name,
+      port: filterData[0].port,
+      baudrate: filterData[0].baudrate,
+      buttonTitle: "Edit",
+    });
+
     setShowModal((prev) => !prev);
   };
 
@@ -39,23 +79,29 @@ const Config = () => {
           </thead>
           <tbody>
             {data.length > 0 ? (
-              data.map((item, no) => {
-                return (
-                  <React.Fragment key={no}>
-                    <tr>
-                      <td>{no + 1}</td>
-                      <td>{item.name}</td>
-                      <td>{item.port}</td>
-                      <td>{item.baudrate}</td>
-                      <td>{item.timestamp}</td>
-                      <td>
-                        <button>Edit</button>
-                        <button>Delete</button>
-                      </td>
-                    </tr>
-                  </React.Fragment>
-                );
-              })
+              data
+                .sort((a, b) => compare(a, b))
+                .map((item, no) => {
+                  return (
+                    <React.Fragment key={no}>
+                      <tr>
+                        <td>{no + 1}</td>
+                        <td>{item.name}</td>
+                        <td>{item.port}</td>
+                        <td>{item.baudrate}</td>
+                        <td>{item.timestamp}</td>
+                        <td>
+                          <button onClick={editHandler} value={item._id}>
+                            Edit
+                          </button>
+                          <button onClick={() => deleteHandler(item._id)}>
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    </React.Fragment>
+                  );
+                })
             ) : (
               <tr rowSpan="2">
                 <td
@@ -72,7 +118,11 @@ const Config = () => {
           <button onClick={modalHandler}>Tambah Pengamat</button>
         </div>
       </div>
-      <Modal showModal={showModal} modalHandler={modalHandler} />
+      <Modal
+        showModal={showModal}
+        modalHandler={modalHandler}
+        editData={editData}
+      />
     </React.Fragment>
   );
 };
