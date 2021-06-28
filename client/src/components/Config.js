@@ -8,7 +8,6 @@ import "../css/Config.css";
 
 const Config = () => {
   const data = useSelector((state) => state.get_data);
-  const single_data = useSelector((state) => state.get_single_data);
 
   const dispatch = useDispatch();
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, useMap, Popup } from "react-leaflet";
 import L from "leaflet";
 import SoldierIcon from "../assets/soldier.png";
 import TankIcon from "../assets/tank.png";
@@ -30,8 +30,6 @@ const MapScale = () => {
 };
 
 const Map = () => {
-  const data = useSelector((state) => state);
-
   const Soldier = new L.Icon({
     iconUrl: SoldierIcon,
     iconRetinaUrl: SoldierIcon,
@@ -46,44 +44,68 @@ const Map = () => {
     iconSize: [40, 40],
   });
 
-  const { f_lat: tank_lat1, f_lng: tank_lng1 } = TankPos(
-    data.p_1.lat_p1,
-    data.p_1.lng_p1,
-    data.p_1.dist_p1,
-    data.p_1.compass_p1
-  );
+  const data = useSelector((state) => state);
 
-  const { f_lat: tank_lat2, f_lng: tank_lng2 } = TankPos(
-    data.p_2.lat_p2,
-    data.p_2.lng_p2,
-    data.p_2.dist_p2,
-    data.p_2.compass_p2
-  );
+  const dataPengamat = [data.p_1, data.p_2, data.p_3, data.p_4];
 
-  const lat_center =
-    (data.p_1.lat_p1 + data.p_2.lat_p2 + tank_lat1 + tank_lat2) / 4;
+  const center = dataPengamat.filter(
+    (item) => item.lat && item.lng !== 0
+  ).length;
 
-  const lng_center =
-    (data.p_1.lng_p1 + data.p_2.lng_p2 + tank_lng1 + tank_lng2) / 4;
+  const center_lat =
+    dataPengamat.reduce((a, b) => ({ lat: a.lat + b.lat })).lat / center;
+  const center_lng =
+    dataPengamat.reduce((a, b) => ({ lng: a.lng + b.lng })).lng / center;
 
   return (
     <MapContainer
       className="map"
-      center={[lat_center, lng_center]}
+      center={[
+        isNaN(center_lat) ? 0 : center_lat,
+        isNaN(center_lng) ? 0 : center_lng,
+      ]}
       zoom={15}
       scrollWheelZoom={true}
     >
       <MapScale />
-      <ChangeView center={[lat_center, lng_center]} zoom={15} />
+      <ChangeView
+        center={[
+          isNaN(center_lat) ? 0 : center_lat,
+          isNaN(center_lng) ? 0 : center_lng,
+        ]}
+        zoom={15}
+      />
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      <Marker position={[data.p_1.lat_p1, data.p_1.lng_p1]} icon={Soldier} />
-      <Marker position={[data.p_2.lat_p2, data.p_2.lng_p2]} icon={Soldier} />
-      <Marker position={[tank_lat1, tank_lng1]} icon={Tank} />
-      <Marker position={[tank_lat2, tank_lng2]} icon={Tank} />
+      {dataPengamat
+        .filter((item) => item.lat && item.lng !== 0)
+        .map((pengamat, index) => (
+          <React.Fragment key={index}>
+            <Marker position={[pengamat.lat, pengamat.lng]} icon={Soldier}>
+              <Popup>Pengamat {index + 1}</Popup>
+            </Marker>
+            <Marker
+              position={[
+                TankPos(
+                  pengamat.lat,
+                  pengamat.lng,
+                  pengamat.dist,
+                  pengamat.compass
+                ).f_lat,
+                TankPos(
+                  pengamat.lat,
+                  pengamat.lng,
+                  pengamat.dist,
+                  pengamat.compass
+                ).f_lng,
+              ]}
+              icon={Tank}
+            />
+          </React.Fragment>
+        ))}
     </MapContainer>
   );
 };

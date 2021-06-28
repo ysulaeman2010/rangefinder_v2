@@ -1,60 +1,86 @@
 .console {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
   height: 86.2vh;
+  width: 99%;
   padding: 10px;
 }
 
-.first__container {
-  flex: 0.496;
+.console__header {
+  padding: 10px;
+}
+
+.console__header > button {
+  height: 30px;
+  cursor: pointer;
+}
+
+.console__wrapper {
+  height: 200vh;
+  width: 100%;
+  display: flex;
+  overflow-x: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.console__content {
+  height: 830px;
+  width: 900px;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
   margin-top: 20px;
   margin-left: 20px;
 }
 
-.second__container {
-  flex: 0.496;
-  margin-top: 20px;
-  margin-right: 20px;
+.console__none {
+  display: none;
 }
 
-.console__header {
-  display: flex;
-  background-color: rgb(73, 79, 82);
-  max-width: 100%;
-  height: 40px;
-  color: white;
-  margin: 0;
-  align-items: center;
-  padding: 10px;
-}
-
-.console__content {
-  background-color: lightgray;
-  height: 60vh;
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
-}
-
-.console__content > p {
-  margin-left: 10px;
-  font-size: 12px;
-}
-
-.console__footer {
-  background-color: rgb(73, 79, 82);
-  height: 60px;
+.console__noData {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.console__header {
+  background-color: rgb(73, 79, 82);
+  color: white;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.console__body {
+  height: 700px;
+  width: 100%;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.console__body > p {
+  margin-left: 10px;
+  color: black;
+}
+
+.console__footer {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(73, 79, 82);
 }
 
 .console__footer > button {
-  margin: 10px;
-  width: 250px;
-  height: 40px;
+  height: 50px;
+  width: 200px;
+  margin-left: 10px;
   cursor: pointer;
   border: 1px solid white;
   background-color: transparent;
@@ -69,39 +95,28 @@
 /* ipad */
 @media only screen and (max-width: 1024px) {
   .console {
-    height: 84.7vh;
-  }
-
-  .first__container {
-    margin-top: 10px;
-    margin-left: 10px;
-  }
-
-  .second__container {
-    margin-top: 10px;
-    margin-right: 10px;
-  }
-
-  .console__header {
-    height: 30px;
+    height: 84.4vh;
   }
 
   .console__content {
-    height: 60vh;
+    height: 600px;
+    width: 460px;
+    margin: 10px;
   }
 
-  .console__content > p {
-    font-size: 10px;
+  .console__body > p {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 14px;
   }
 
   .console__footer {
-    height: 60px;
+    height: 80px;
   }
 
   .console__footer > button {
-    margin: 10px;
+    height: 30px;
     width: 150px;
-    height: 40px;
-    cursor: pointer;
+    margin-left: 10px;
   }
 }

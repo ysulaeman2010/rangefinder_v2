@@ -69,6 +69,6 @@
 /* ipad pro */
 @media only screen and (max-width: 1024px) {
   .table__wrapper {
-    height: 87.6vh;
+    height: 87vh;
   }
 }

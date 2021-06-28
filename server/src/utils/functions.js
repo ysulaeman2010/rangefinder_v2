@@ -103,16 +103,16 @@ const sendData_p1 = (socket) => {
   const press_p1 = random.float(0, 1);
 
   const data = {
-    time_p1: t_p1,
-    lat_p1: loc_p1["latitude"],
-    lng_p1: loc_p1["longitude"],
-    dist_p1: dist_p1,
-    compass_p1: compass_p1,
-    d_alti_p1: d_alti_p1.toFixed(2),
-    alti_p1: alti_p1.toFixed(2),
-    humid_p1: humid_p1.toFixed(2),
-    temp_p1: temp_p1.toFixed(2),
-    press_p1: press_p1.toFixed(2),
+    time: t_p1,
+    lat: loc_p1["latitude"],
+    lng: loc_p1["longitude"],
+    dist: dist_p1,
+    compass: compass_p1,
+    d_alti: d_alti_p1.toFixed(2),
+    alti: alti_p1.toFixed(2),
+    humid: humid_p1.toFixed(2),
+    temp: temp_p1.toFixed(2),
+    press: press_p1.toFixed(2),
   };
 
   socket.emit("p_1", data);
@@ -137,16 +137,16 @@ const sendData_p2 = (socket) => {
   const press_p2 = random.float(0, 1);
 
   const data = {
-    time_p2: t_p2,
-    lat_p2: loc_p2["latitude"],
-    lng_p2: loc_p2["longitude"],
-    dist_p2: dist_p2,
-    compass_p2: compass_p2,
-    d_alti_p2: d_alti_p2.toFixed(2),
-    alti_p2: alti_p2.toFixed(2),
-    humid_p2: humid_p2.toFixed(2),
-    temp_p2: temp_p2.toFixed(2),
-    press_p2: press_p2.toFixed(2),
+    time: t_p2,
+    lat: loc_p2["latitude"],
+    lng: loc_p2["longitude"],
+    dist: dist_p2,
+    compass: compass_p2,
+    d_alti: d_alti_p2.toFixed(2),
+    alti: alti_p2.toFixed(2),
+    humid: humid_p2.toFixed(2),
+    temp: temp_p2.toFixed(2),
+    press: press_p2.toFixed(2),
   };
 
   socket.emit("p_2", data);
@@ -171,16 +171,16 @@ const sendData_p3 = (socket) => {
   const press_p3 = random.float(0, 1);
 
   const data = {
-    time_p3: t_p3,
-    lat_p3: loc_p3["latitude"],
-    lng_p3: loc_p3["longitude"],
-    dist_p3: dist_p3,
-    compass_p3: compass_p3,
-    d_alti_p3: d_alti_p3.toFixed(2),
-    alti_p3: alti_p3.toFixed(2),
-    humid_p3: humid_p3.toFixed(2),
-    temp_p3: temp_p3.toFixed(2),
-    press_p3: press_p3.toFixed(2),
+    time: t_p3,
+    lat: loc_p3["latitude"],
+    lng: loc_p3["longitude"],
+    dist: dist_p3,
+    compass: compass_p3,
+    d_alti: d_alti_p3.toFixed(2),
+    alti: alti_p3.toFixed(2),
+    humid: humid_p3.toFixed(2),
+    temp: temp_p3.toFixed(2),
+    press: press_p3.toFixed(2),
   };
 
   socket.emit("p_3", data);
@@ -205,16 +205,16 @@ const sendData_p4 = (socket) => {
   const press_p4 = random.float(0, 1);
 
   const data = {
-    time_p4: t_p4,
-    lat_p4: loc_p4["latitude"],
-    lng_p4: loc_p4["longitude"],
-    dist_p4: dist_p4,
-    compass_p4: compass_p4,
-    d_alti_p4: d_alti_p4.toFixed(2),
-    alti_p4: alti_p4.toFixed(2),
-    humid_p4: humid_p4.toFixed(2),
-    temp_p4: temp_p4.toFixed(2),
-    press_p4: press_p4.toFixed(2),
+    time: t_p4,
+    lat: loc_p4["latitude"],
+    lng: loc_p4["longitude"],
+    dist: dist_p4,
+    compass: compass_p4,
+    d_alti: d_alti_p4.toFixed(2),
+    alti: alti_p4.toFixed(2),
+    humid: humid_p4.toFixed(2),
+    temp: temp_p4.toFixed(2),
+    press: press_p4.toFixed(2),
   };
 
   socket.emit("p_4", data);

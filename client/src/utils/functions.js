@@ -49,3 +49,18 @@ export const compare = (a, b) => {
 
   return 0;
 };
+
+export const angkaToString = (angka) => {
+  switch (angka) {
+    case 1:
+      return "Satu";
+    case 2:
+      return "Dua";
+    case 3:
+      return "Tiga";
+    case 4:
+      return "Empat";
+    default:
+      return angka;
+  }
+};

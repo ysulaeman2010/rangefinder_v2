@@ -83,7 +83,9 @@ const Data = () => {
         dispatch(collectDataC4(res));
       });
     } catch (err) {
-      dispatch(closeStream(err));
+      socket.on("disconnect", () => {
+        dispatch(closeStream());
+      });
     }
 
     socket.on("disconnect", () => {
@@ -91,7 +93,9 @@ const Data = () => {
     });
 
     return () => {
-      socket.disconnect();
+      socket.on("disconnect", () => {
+        dispatch(closeStream());
+      });
     };
   }, []);
 
