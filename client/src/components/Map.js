@@ -93,7 +93,7 @@ const Map = () => {
             {data.get_data[index] !== undefined && (
               <>
                 <Marker position={[pengamat.lat, pengamat.lng]} icon={Soldier}>
-                  <Popup>Pengamat {data.get_data[index].name}</Popup>
+                  <Popup>Pengamat {data.get_data[index + 1].name}</Popup>
                 </Marker>
                 <Marker
                   position={[
