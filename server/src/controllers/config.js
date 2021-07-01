@@ -1,5 +1,5 @@
 const db = require("nedb");
-const mqtt = require("mqtt");
+// const mqtt = require("mqtt");
 const { customAlphabet } = require("nanoid");
 const fun = require("../utils/functions");
 
@@ -10,7 +10,7 @@ database.loadDatabase();
 
 var conn = false;
 
-const client = mqtt.connect("mqtt://127.0.0.1");
+/* const client = mqtt.connect("mqtt://127.0.0.1");
 client.on("connect", function () {
   conn = true;
 });
@@ -25,7 +25,7 @@ client.on("offline", (err) => {
 
 client.on("error", (err) => {
   conn = false;
-});
+}); */
 
 exports.postData = (req, res, next) => {
   const name = req.body.name;
@@ -102,7 +102,7 @@ exports.patchData = (req, res, next) => {
             res.json(error);
             return;
           }
-          conn
+          /* conn
             ? client.publish(
                 "pconf",
                 JSON.stringify({
@@ -111,7 +111,7 @@ exports.patchData = (req, res, next) => {
                   port: req.body.port,
                 })
               )
-            : (replaced = replaced);
+            : (replaced = replaced); */
           res.status(200).send("");
           next();
         }
@@ -129,7 +129,7 @@ exports.patchData = (req, res, next) => {
             res.json(error);
             return;
           }
-          conn
+          /* conn
             ? client.publish(
                 "pconf",
                 JSON.stringify({
@@ -138,7 +138,7 @@ exports.patchData = (req, res, next) => {
                   baudrate: req.body.baudrate,
                 })
               )
-            : (replaced = replaced);
+            : (replaced = replaced); */
           res.status(200).send("");
           next();
         }
@@ -156,7 +156,7 @@ exports.patchData = (req, res, next) => {
             res.json(error);
             return;
           }
-          conn
+          /* conn
             ? client.publish(
                 "pconf",
                 JSON.stringify({
@@ -166,7 +166,7 @@ exports.patchData = (req, res, next) => {
                   baudrate: req.body.baudrate,
                 })
               )
-            : (replaced = replaced);
+            : (replaced = replaced); */
           res.status(200).send(replaced);
           next();
         }
@@ -193,12 +193,12 @@ exports.deleteData = (req, res, next) => {
 
         return;
       }
-      conn
+      /* conn
         ? client.publish(
             "pconf",
             JSON.stringify({ stat: "del", id: req.query.id })
           )
-        : (removed = removed);
+        : (removed = removed); */
 
       res.status(200).send("");
       next();

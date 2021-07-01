@@ -6,6 +6,7 @@ const path = require("path");
 
 const configRoutes = require("./src/routes/config");
 const fun = require("./src/utils/functions");
+const db = require("nedb");
 
 const app = express();
 const server = require("http").createServer(app);
@@ -14,6 +15,9 @@ const io = require("socket.io")(server, {
     origin: "*",
   },
 });
+
+const database = new db("database.db");
+database.loadDatabase();
 
 app.use(
   "/",
@@ -33,22 +37,57 @@ server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}...`);
 });
 
+var pengamat = [];
+var dummy = [];
+
 io.on("connection", (socket) => {
   console.log(`A new client connected with id ${socket.id}`);
-  // dummy data d
-  fun.sendData_d1(socket);
-  fun.sendData_d2(socket);
-  fun.sendData_d3(socket);
-  fun.sendData_d4(socket);
 
-  // dummy data p
-  fun.sendData_p1(socket);
-  fun.sendData_p2(socket);
-  fun.sendData_p3(socket);
-  fun.sendData_p4(socket);
+  database.find({}, (err, data) => {
+    if (err) {
+      console.error(err);
+    }
+    pengamat = data;
+  });
 
-  // dummy data c
-  fun.sendData_c1(socket);
+  // handle the event sent with socket.send()
+  socket.on("p", (data) => {
+    console.log(data);
+
+    // dummy data p
+    var nomor = pengamat.findIndex(p => p._id === data.id)
+    if (nomor + 1 === 1) {
+      fun.sendData_p1(socket, data);
+    } else if (nomor + 1 === 2) {
+      fun.sendData_p2(socket, data);
+    } else if (nomor + 1 === 3) {
+      fun.sendData_p3(socket, data);
+    } else if (nomor + 1 === 4) {
+      fun.sendData_p4(socket, data);
+    }
+
+  });
+
+  // handle the event sent with socket.send()
+  socket.on("d", (data) => {
+    console.log(data);
+
+    // dummy data d
+    fun.sendData_d1(socket, data);
+    fun.sendData_d2(socket, data);
+    fun.sendData_d3(socket, data);
+    fun.sendData_d4(socket, data);
+  });
+
+  // handle the event sent with socket.send()
+  socket.on("c1", (data) => {
+    console.log(data);
+
+    // dummy data c1
+    fun.sendData_c1(socket, data);
+
+  });
+
   fun.sendData_c2(socket);
   fun.sendData_c3(socket);
   fun.sendData_c4(socket);

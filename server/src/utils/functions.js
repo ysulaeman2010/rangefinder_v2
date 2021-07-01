@@ -26,8 +26,10 @@ const time = () => {
 
 //d function
 
-const sendData_d1 = (socket) => {
+const sendData_d1 = (socket, d1data) => {
   const loc_rf1 = randomLocation.randomCirclePoint(centrePoint, 1500);
+
+  // data source: d1data
 
   const data = {
     lat_rf1: loc_rf1["latitude"],
@@ -36,13 +38,15 @@ const sendData_d1 = (socket) => {
 
   socket.emit("d_1", data);
 
-  setTimeout(() => {
+  /* setTimeout(() => {
     sendData_d1(socket);
-  }, 5000);
+  }, 5000); */
 };
 
-const sendData_d2 = (socket) => {
+const sendData_d2 = (socket, d2data) => {
   const loc_rf2 = randomLocation.randomCirclePoint(centrePoint, 1500);
+
+  // data source: d2data
 
   const data = {
     lat_rf2: loc_rf2["latitude"],
@@ -51,13 +55,15 @@ const sendData_d2 = (socket) => {
 
   socket.emit("d_2", data);
 
-  setTimeout(() => {
+  /* setTimeout(() => {
     sendData_d2(socket);
-  }, 5000);
+  }, 5000); */
 };
 
-const sendData_d3 = (socket) => {
+const sendData_d3 = (socket, d3data) => {
   const loc_rf3 = randomLocation.randomCirclePoint(centrePoint, 1500);
+
+  // data source: d3data
 
   const data = {
     lat_rf3: loc_rf3["latitude"],
@@ -66,13 +72,15 @@ const sendData_d3 = (socket) => {
 
   socket.emit("d_3", data);
 
-  setTimeout(() => {
+  /* setTimeout(() => {
     sendData_d3(socket);
-  }, 5000);
+  }, 5000); */
 };
 
-const sendData_d4 = (socket) => {
+const sendData_d4 = (socket, d4data) => {
   const loc_rf4 = randomLocation.randomCirclePoint(centrePoint, 1500);
+
+  // data source: d4data
 
   const data = {
     lat_rf4: loc_rf4["latitude"],
@@ -81,14 +89,14 @@ const sendData_d4 = (socket) => {
 
   socket.emit("d_4", data);
 
-  setTimeout(() => {
+  /* setTimeout(() => {
     sendData_d4(socket);
-  }, 5000);
+  }, 5000); */
 };
 
 //p function
 
-const sendData_p1 = (socket) => {
+const sendData_p1 = (socket, p1data) => {
   const t_p1 = time();
 
   const loc_p1 = randomLocation.randomCirclePoint(centrePoint, 1500);
@@ -101,6 +109,8 @@ const sendData_p1 = (socket) => {
   const humid_p1 = random.float(90, 100);
   const temp_p1 = random.float(20, 40);
   const press_p1 = random.float(0, 1);
+
+  // data source: p1data
 
   const data = {
     time: t_p1,
@@ -117,12 +127,12 @@ const sendData_p1 = (socket) => {
 
   socket.emit("p_1", data);
 
-  setTimeout(() => {
+  /* setTimeout(() => {
     sendData_p1(socket);
-  }, 5000);
+  }, 5000); */
 };
 
-const sendData_p2 = (socket) => {
+const sendData_p2 = (socket, p2data) => {
   const t_p2 = time();
 
   const loc_p2 = randomLocation.randomCirclePoint(centrePoint, 1500);
@@ -135,6 +145,8 @@ const sendData_p2 = (socket) => {
   const humid_p2 = random.float(90, 100);
   const temp_p2 = random.float(20, 40);
   const press_p2 = random.float(0, 1);
+
+  // data source: p2data
 
   const data = {
     time: t_p2,
@@ -151,12 +163,12 @@ const sendData_p2 = (socket) => {
 
   socket.emit("p_2", data);
 
-  setTimeout(() => {
+  /* setTimeout(() => {
     sendData_p2(socket);
-  }, 5000);
+  }, 5000); */
 };
 
-const sendData_p3 = (socket) => {
+const sendData_p3 = (socket, p3data) => {
   const t_p3 = time();
 
   const loc_p3 = randomLocation.randomCirclePoint(centrePoint, 1500);
@@ -169,6 +181,8 @@ const sendData_p3 = (socket) => {
   const humid_p3 = random.float(90, 100);
   const temp_p3 = random.float(20, 40);
   const press_p3 = random.float(0, 1);
+
+  // data source: p3data
 
   const data = {
     time: t_p3,
@@ -185,12 +199,12 @@ const sendData_p3 = (socket) => {
 
   socket.emit("p_3", data);
 
-  setTimeout(() => {
+  /* setTimeout(() => {
     sendData_p3(socket);
-  }, 5000);
+  }, 5000); */
 };
 
-const sendData_p4 = (socket) => {
+const sendData_p4 = (socket, p4data) => {
   const t_p4 = time();
 
   const loc_p4 = randomLocation.randomCirclePoint(centrePoint, 1500);
@@ -203,6 +217,8 @@ const sendData_p4 = (socket) => {
   const humid_p4 = random.float(90, 100);
   const temp_p4 = random.float(20, 40);
   const press_p4 = random.float(0, 1);
+
+  // data source: p4data
 
   const data = {
     time: t_p4,
@@ -219,19 +235,21 @@ const sendData_p4 = (socket) => {
 
   socket.emit("p_4", data);
 
-  setTimeout(() => {
+  /* setTimeout(() => {
     sendData_p4(socket);
-  }, 5000);
+  }, 5000); */
 };
 
 //c function
 
-const sendData_c1 = (socket) => {
+const sendData_c1 = (socket, c1data) => {
   const wind_speed_c1 = random.float(0, 100);
   const wind_dir_c1 = random.float(0, 100);
   const temp_c1 = random.float(20, 40);
   const humid_c1 = random.float(90, 100);
   const press_c1 = random.float(0, 1);
+
+  // data source: c1data
 
   data = {
     wind_speed_c1: wind_speed_c1.toFixed(2),
@@ -240,11 +258,12 @@ const sendData_c1 = (socket) => {
     humid_c1: humid_c1.toFixed(2),
     press_c1: press_c1.toFixed(2),
   };
+
   socket.emit("c_1", data);
 
-  setTimeout(() => {
+  /* setTimeout(() => {
     sendData_c1(socket);
-  }, 5000);
+  }, 5000); */
 };
 
 const sendData_c2 = (socket) => {
