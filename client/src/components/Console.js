@@ -96,7 +96,9 @@ const Console = () => {
             {dataPengamat.map((item, index) => (
               <div
                 className={
-                  item.time !== 0 ? "console__content" : "console__none"
+                  data.get_data[index] !== undefined
+                    ? "console__content"
+                    : "console__none"
                 }
                 key={index}
               >

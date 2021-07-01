@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getConfigure } from "../data";
 import { MapContainer, TileLayer, Marker, useMap, Popup } from "react-leaflet";
 import L from "leaflet";
 import SoldierIcon from "../assets/soldier.png";
@@ -45,6 +46,11 @@ const Map = () => {
   });
 
   const data = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getConfigure());
+  }, []);
 
   const dataPengamat = [data.p_1, data.p_2, data.p_3, data.p_4];
 
@@ -84,26 +90,30 @@ const Map = () => {
         .filter((item) => item.lat && item.lng !== 0)
         .map((pengamat, index) => (
           <React.Fragment key={index}>
-            <Marker position={[pengamat.lat, pengamat.lng]} icon={Soldier}>
-              <Popup>Pengamat {index + 1}</Popup>
-            </Marker>
-            <Marker
-              position={[
-                TankPos(
-                  pengamat.lat,
-                  pengamat.lng,
-                  pengamat.dist,
-                  pengamat.compass
-                ).f_lat,
-                TankPos(
-                  pengamat.lat,
-                  pengamat.lng,
-                  pengamat.dist,
-                  pengamat.compass
-                ).f_lng,
-              ]}
-              icon={Tank}
-            />
+            {data.get_data[index] !== undefined && (
+              <>
+                <Marker position={[pengamat.lat, pengamat.lng]} icon={Soldier}>
+                  <Popup>Pengamat {data.get_data[index].name}</Popup>
+                </Marker>
+                <Marker
+                  position={[
+                    TankPos(
+                      pengamat.lat,
+                      pengamat.lng,
+                      pengamat.dist,
+                      pengamat.compass
+                    ).f_lat,
+                    TankPos(
+                      pengamat.lat,
+                      pengamat.lng,
+                      pengamat.dist,
+                      pengamat.compass
+                    ).f_lng,
+                  ]}
+                  icon={Tank}
+                />
+              </>
+            )}
           </React.Fragment>
         ))}
     </MapContainer>
