@@ -197,7 +197,7 @@ const sendData_p3 = (socket, p3data) => {
     press: press_p3.toFixed(2),
   };
 
-  socket.emit("p_3", data);
+  socket.broadcast.emit("p_3", data);
 
   /* setTimeout(() => {
     sendData_p3(socket);

@@ -2,11 +2,11 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const serveStatic = require("serve-static");
+const axios = require("axios");
 const path = require("path");
 
 const configRoutes = require("./src/routes/config");
 const fun = require("./src/utils/functions");
-const db = require("nedb");
 
 const app = express();
 const server = require("http").createServer(app);
@@ -15,9 +15,6 @@ const io = require("socket.io")(server, {
     origin: "*",
   },
 });
-
-const database = new db("database.db");
-database.loadDatabase();
 
 app.use(
   "/",
@@ -40,60 +37,72 @@ server.listen(PORT, () => {
 var pengamat = [];
 var dummy = [];
 
-io.on("connection", (socket) => {
-  console.log(`A new client connected with id ${socket.id}`);
+io.on("connection", async (socket) => {
+  try {
+    console.log(`A new client connected with id ${socket.id}`);
 
-  database.find({}, (err, data) => {
-    if (err) {
-      console.error(err);
-    }
-    pengamat = data;
-  });
+    var tempP = await axios.get("http://localhost:3001/v2/config/get");
+    pengamat = tempP.data;
+    console.log(pengamat);
+    /* database.find({}, (err, data) => {
+      if (err) {
+        console.error(err);
+      }
+      pengamat = data;
+    }); */
 
-  // handle the event sent with socket.send()
-  socket.on("p", (data) => {
-    console.log(data);
+    // handle the event sent with socket.send()
+    socket.on("p", (data) => {
+      console.log(data);
 
-    // dummy data p
-    var nomor = pengamat.findIndex(p => p._id === data.id)
-    if (nomor + 1 === 1) {
-      fun.sendData_p1(socket, data);
-    } else if (nomor + 1 === 2) {
-      fun.sendData_p2(socket, data);
-    } else if (nomor + 1 === 3) {
-      fun.sendData_p3(socket, data);
-    } else if (nomor + 1 === 4) {
-      fun.sendData_p4(socket, data);
-    }
+      // dummy data p
+      var nomor = pengamat.findIndex(p => p._id === data.id)
+      if (nomor + 1 === 1) {
+        console.log("p1");
+        fun.sendData_p1(socket, data);
+      } else if (nomor + 1 === 2) {
+        console.log("p2");
+        fun.sendData_p2(socket, data);
+      } else if (nomor + 1 === 3) {
+        console.log("p3");
+        fun.sendData_p3(socket, data);
+      } else if (nomor + 1 === 4) {
+        console.log("p4");
+        fun.sendData_p4(socket, data);
+      }
 
-  });
+    });
 
-  // handle the event sent with socket.send()
-  socket.on("d", (data) => {
-    console.log(data);
+    // handle the event sent with socket.send()
+    socket.on("d", (data) => {
+      console.log(data);
 
-    // dummy data d
-    fun.sendData_d1(socket, data);
-    fun.sendData_d2(socket, data);
-    fun.sendData_d3(socket, data);
-    fun.sendData_d4(socket, data);
-  });
+      // dummy data d
+      fun.sendData_d1(socket, data);
+      fun.sendData_d2(socket, data);
+      fun.sendData_d3(socket, data);
+      fun.sendData_d4(socket, data);
+    });
 
-  // handle the event sent with socket.send()
-  socket.on("c1", (data) => {
-    console.log(data);
+    // handle the event sent with socket.send()
+    socket.on("c1", (data) => {
+      console.log(data);
 
-    // dummy data c1
-    fun.sendData_c1(socket, data);
+      // dummy data c1
+      fun.sendData_c1(socket, data);
 
-  });
+    });
 
-  fun.sendData_c2(socket);
-  fun.sendData_c3(socket);
-  fun.sendData_c4(socket);
+    fun.sendData_c2(socket);
+    fun.sendData_c3(socket);
+    fun.sendData_c4(socket);
 
-  socket.on("disconnect", () => {
-    console.log(`${socket.id} disconnected`);
-    console.log("--------------");
-  });
+    socket.on("disconnect", () => {
+      console.log(`${socket.id} disconnected`);
+      console.log("--------------");
+    });
+  } catch (err) {
+    console.error(err);
+  }
+
 });
