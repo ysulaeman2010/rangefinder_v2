@@ -97,7 +97,7 @@ const sendData_d4 = (socket, d4data) => {
 //p function
 
 const sendData_p1 = (socket, p1data) => {
-  const t_p1 = time();
+  /* const t_p1 = time();
 
   const loc_p1 = randomLocation.randomCirclePoint(centrePoint, 1500);
   const target = randomLocation.randomCirclePoint(centrePoint, 500);
@@ -123,9 +123,9 @@ const sendData_p1 = (socket, p1data) => {
     humid: humid_p1.toFixed(2),
     temp: temp_p1.toFixed(2),
     press: press_p1.toFixed(2),
-  };
+  }; */
 
-  socket.emit("p_1", data);
+  socket.broadcast.emit("p_1", p1data);
 
   /* setTimeout(() => {
     sendData_p1(socket);
@@ -133,7 +133,7 @@ const sendData_p1 = (socket, p1data) => {
 };
 
 const sendData_p2 = (socket, p2data) => {
-  const t_p2 = time();
+  /* const t_p2 = time();
 
   const loc_p2 = randomLocation.randomCirclePoint(centrePoint, 1500);
   const target = randomLocation.randomCirclePoint(centrePoint, 500);
@@ -159,9 +159,9 @@ const sendData_p2 = (socket, p2data) => {
     humid: humid_p2.toFixed(2),
     temp: temp_p2.toFixed(2),
     press: press_p2.toFixed(2),
-  };
+  }; */
 
-  socket.emit("p_2", data);
+  socket.broadcast.emit("p_2", p2data);
 
   /* setTimeout(() => {
     sendData_p2(socket);
@@ -169,7 +169,7 @@ const sendData_p2 = (socket, p2data) => {
 };
 
 const sendData_p3 = (socket, p3data) => {
-  const t_p3 = time();
+  /* const t_p3 = time();
 
   const loc_p3 = randomLocation.randomCirclePoint(centrePoint, 1500);
   const target = randomLocation.randomCirclePoint(centrePoint, 500);
@@ -195,9 +195,9 @@ const sendData_p3 = (socket, p3data) => {
     humid: humid_p3.toFixed(2),
     temp: temp_p3.toFixed(2),
     press: press_p3.toFixed(2),
-  };
+  }; */
 
-  socket.broadcast.emit("p_3", data);
+  socket.broadcast.emit("p_3", p3data);
 
   /* setTimeout(() => {
     sendData_p3(socket);
@@ -205,7 +205,7 @@ const sendData_p3 = (socket, p3data) => {
 };
 
 const sendData_p4 = (socket, p4data) => {
-  const t_p4 = time();
+  /* const t_p4 = time();
 
   const loc_p4 = randomLocation.randomCirclePoint(centrePoint, 1500);
   const target = randomLocation.randomCirclePoint(centrePoint, 500);
@@ -231,9 +231,9 @@ const sendData_p4 = (socket, p4data) => {
     humid: humid_p4.toFixed(2),
     temp: temp_p4.toFixed(2),
     press: press_p4.toFixed(2),
-  };
+  }; */
 
-  socket.emit("p_4", data);
+  socket.broadcast.emit("p_4", p4data);
 
   /* setTimeout(() => {
     sendData_p4(socket);
