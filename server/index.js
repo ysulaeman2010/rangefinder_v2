@@ -53,24 +53,23 @@ io.on("connection", async (socket) => {
 
     // handle the event sent with socket.send()
     socket.on("p", (data) => {
-      console.log(data);
+      //console.log(data);
 
       // dummy data p
-      var nomor = pengamat.findIndex(p => p._id === data.id)
+      var nomor = pengamat.findIndex((p) => p._id === data.id);
       if (nomor + 1 === 1) {
-        console.log("p1");
+        //console.log("p1");
         fun.sendData_p1(socket, data);
       } else if (nomor + 1 === 2) {
-        console.log("p2");
+        //console.log("p2");
         fun.sendData_p2(socket, data);
       } else if (nomor + 1 === 3) {
-        console.log("p3");
+        //console.log("p3");
         fun.sendData_p3(socket, data);
       } else if (nomor + 1 === 4) {
-        console.log("p4");
+        //console.log("p4");
         fun.sendData_p4(socket, data);
       }
-
     });
 
     // handle the event sent with socket.send()
@@ -90,7 +89,6 @@ io.on("connection", async (socket) => {
 
       // dummy data c1
       fun.sendData_c1(socket, data);
-
     });
 
     fun.sendData_c2(socket);
@@ -104,5 +102,4 @@ io.on("connection", async (socket) => {
   } catch (err) {
     console.error(err);
   }
-
 });

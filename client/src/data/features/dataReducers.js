@@ -33,6 +33,7 @@ const initialState = {
   d_3: {},
   d_4: {},
   p_1: {
+    id: null,
     time: 0,
     lat: 0,
     lng: 0,
@@ -45,6 +46,7 @@ const initialState = {
     press: 0,
   },
   p_2: {
+    id: null,
     time: 0,
     lat: 0,
     lng: 0,
@@ -57,6 +59,7 @@ const initialState = {
     press: 0,
   },
   p_3: {
+    id: null,
     time: 0,
     lat: 0,
     lng: 0,
@@ -69,6 +72,7 @@ const initialState = {
     press: 0,
   },
   p_4: {
+    id: null,
     time: 0,
     lat: 0,
     lng: 0,
