@@ -106,6 +106,7 @@ const Map = () => {
                     Nama {data.get_data[activeIndex + index].name}
                   </Popup>
                 </Marker>
+
                 <Marker
                   position={[
                     TankPos(
@@ -122,7 +123,15 @@ const Map = () => {
                     ).f_lng,
                   ]}
                   icon={Tank}
-                />
+                >
+                  <Popup>
+                    Tank dari pengamat ke {index + 1} <hr />
+                    Nama pengamat {data.get_data[activeIndex + index].name}
+                    <br />
+                    Waktu pengamatan{" "}
+                    {data.get_data[activeIndex + index].timestamp}
+                  </Popup>
+                </Marker>
               </>
             )}
           </React.Fragment>
