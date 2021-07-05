@@ -60,6 +60,8 @@ const Map = () => {
     (pengamat) => pengamat.id !== null
   );
 
+  console.log(activeIndex);
+
   const center = dataPengamat.filter(
     (item) => item.lat && item.lng !== 0
   ).length;
@@ -99,7 +101,10 @@ const Map = () => {
             {data.get_data[index] !== undefined && (
               <>
                 <Marker position={[pengamat.lat, pengamat.lng]} icon={Soldier}>
-                  <Popup>Nama {data.get_data[activeIndex].name}</Popup>
+                  <Popup>
+                    Pengamat ke {index + 1} <hr />
+                    Nama {data.get_data[activeIndex + index].name}
+                  </Popup>
                 </Marker>
                 <Marker
                   position={[
