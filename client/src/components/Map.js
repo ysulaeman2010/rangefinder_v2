@@ -54,13 +54,11 @@ const Map = () => {
 
   const dataPengamat = [data.p_1, data.p_2, data.p_3, data.p_4];
 
-  const activePengamat = data.get_data;
-
   const activeIndex = dataPengamat.findIndex(
     (pengamat) => pengamat.id !== null
   );
 
-  console.log(activeIndex);
+  console.log(dataPengamat);
 
   const center = dataPengamat.filter(
     (item) => item.lat && item.lng !== 0
@@ -128,8 +126,7 @@ const Map = () => {
                     Tank dari pengamat ke {index + 1} <hr />
                     Nama pengamat {data.get_data[activeIndex + index].name}
                     <br />
-                    Waktu pengamatan{" "}
-                    {data.get_data[activeIndex + index].timestamp}
+                    Waktu pengamatan {pengamat.time}
                   </Popup>
                 </Marker>
               </>
