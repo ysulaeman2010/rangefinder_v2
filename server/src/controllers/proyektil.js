@@ -24,38 +24,6 @@ client.on("error", (err) => {
   conn = false;
 }); */
 
-exports.postData = (req, res, next) => {
-  const radius = req.body.radius;
-  const mass = req.body.mass;
-  const v0 = req.body.v0;
-
-  const result = {
-    timestamp: fun.time(),
-    _id: 1,
-    radius: radius,
-    mass: mass,
-    v0: v0,
-  };
-
-  /* console.log(result);
-  conn
-    ? client.publish(
-        "pconf",
-        JSON.stringify({
-          stat: "add",
-          id: result._id,
-          port: result.port,
-          baudrate: result.baudrate,
-        })
-      )
-    : (result = result); */
-  database.insert(result);
-
-  res.status(201).json(result);
-  next();
-};
-
-// darvm6u0whxwmpc7
 exports.getData = (req, res, next) => {
   database.find({}, (err, data) => {
     if (err) {
