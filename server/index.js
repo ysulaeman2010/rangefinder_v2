@@ -6,6 +6,7 @@ const axios = require("axios");
 const path = require("path");
 
 const configRoutes = require("./src/routes/config");
+const proyektilRoutes = require("./src/routes/proyektil");
 const fun = require("./src/utils/functions");
 
 const app = express();
@@ -28,6 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use("/v2/", configRoutes);
+app.use("/v2/", proyektilRoutes);
 
 const PORT = 3001;
 server.listen(PORT, () => {

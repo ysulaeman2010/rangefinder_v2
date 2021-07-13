@@ -12,7 +12,7 @@ const centrePoint = {
 const time = () => {
   const current = new Date();
   const day = current.getDate();
-  const month = current.getMonth();
+  const month = current.getMonth() + 1;
   const year = current.getFullYear();
   const time = current.toLocaleTimeString("en-US", {
     hour: "2-digit",
