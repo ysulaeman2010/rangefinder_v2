@@ -1,10 +1,10 @@
 const express = require("express");
-const configController = require("../controllers/config");
+const proyektilController = require("../controllers/proyektil");
 
 const router = express.Router();
 
-router.post("/proyektil/post/", configController.postData);
-router.get("/proyektil/get/", configController.getData);
-router.patch("/proyektil/patch/", configController.patchData);
+router.post("/proyektil/post/", proyektilController.postData);
+router.get("/proyektil/get/", proyektilController.getData);
+router.patch("/proyektil/patch/", proyektilController.patchData);
 
 module.exports = router;
