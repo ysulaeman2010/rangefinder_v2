@@ -23,6 +23,8 @@ import {
   API_GET_SUCCESS,
   API_ERROR,
   API_GET_BYID_SUCCESS,
+  API_PROJECTIL_GET_DATA,
+  API_PROJECTIL_ERROR,
 } from "./dataTypes";
 
 const initialState = {
@@ -95,6 +97,8 @@ const initialState = {
   post_feedback: [],
   get_data: [],
   get_single_data: [],
+  get_projectil_data: [],
+  get_projectil_error_status: "",
   error: "",
 };
 
@@ -321,6 +325,22 @@ const dataReducer = (state = initialState, action) => {
         fetch_status: false,
         get_data: [],
         error: action.payload,
+      };
+    }
+
+    case API_PROJECTIL_GET_DATA: {
+      return {
+        ...state,
+        get_projectil_data: action.payload,
+        get_projectil_error_status: "",
+      };
+    }
+
+    case API_PROJECTIL_ERROR: {
+      return {
+        ...state,
+        get_projectil_data: [],
+        get_projectil_error_status: action.payload,
       };
     }
 

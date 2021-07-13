@@ -41,12 +41,14 @@ exports.getData = (req, res, next) => {
 exports.patchData = (req, res, next) => {
   database.update(
     { _id: 1 },
-    { $set: {
-      timestamp: fun.time(),
-      radius: req.body.radius,
-      mass: req.body.mass,
-      v0: req.body.v0,
-    } },
+    {
+      $set: {
+        timestamp: fun.time(),
+        radius: req.body.radius,
+        mass: req.body.mass,
+        v0: req.body.v0,
+      },
+    },
     {},
     (err, replaced) => {
       if (err) {

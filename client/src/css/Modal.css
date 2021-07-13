@@ -13,7 +13,7 @@
 
 .modal__wrapper {
   position: fixed;
-  top: 20vh;
+  top: 32vh;
   width: 30%;
   background-color: lightgray;
   z-index: 30;
@@ -93,6 +93,7 @@
 /* ipad pro */
 @media only screen and (max-width: 1366px) {
   .modal__wrapper {
+    top: 32vh;
     width: 40%;
   }
 }
@@ -100,6 +101,7 @@
 /* ipad pro */
 @media only screen and (max-width: 1024px) {
   .modal__wrapper {
+    top: 23vh;
     width: 50%;
   }
 }

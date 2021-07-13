@@ -6,14 +6,29 @@
   height: 88.2vh;
 }
 
-.table__header {
+.table__tab {
   display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: rgb(73, 79, 82);
   width: 80%;
-  height: 70px;
+}
+
+.table__tab > span {
+  padding: 20px;
   color: white;
+  cursor: pointer;
+}
+
+.table__tab > span:hover {
+  background: rgba(161, 160, 160, 0.3);
+  color: white;
+}
+
+.table__tab .active {
+  font-weight: 500;
+}
+
+.table__tab > span:not(:last-child) {
+  margin-right: 5px;
 }
 
 #table__data {

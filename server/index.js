@@ -45,7 +45,7 @@ io.on("connection", async (socket) => {
 
     var tempP = await axios.get("http://localhost:3001/v2/config/get");
     pengamat = tempP.data;
-    console.log(pengamat);
+    //console.log(pengamat);
     /* database.find({}, (err, data) => {
       if (err) {
         console.error(err);
@@ -76,7 +76,7 @@ io.on("connection", async (socket) => {
 
     // handle the event sent with socket.send()
     socket.on("d", (data) => {
-      console.log(data);
+      //console.log(data);
 
       // dummy data d
       fun.sendData_d1(socket, data);
@@ -87,7 +87,7 @@ io.on("connection", async (socket) => {
 
     // handle the event sent with socket.send()
     socket.on("c1", (data) => {
-      console.log(data);
+      //console.log(data);
 
       // dummy data c1
       fun.sendData_c1(socket, data);

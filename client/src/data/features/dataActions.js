@@ -24,6 +24,8 @@ import {
   API_GET_SUCCESS,
   API_ERROR,
   API_GET_BYID_SUCCESS,
+  API_PROJECTIL_GET_DATA,
+  API_PROJECTIL_ERROR,
 } from "./dataTypes";
 
 export const closeStream = (err) => {
@@ -190,6 +192,20 @@ export const apiError = (error) => {
   };
 };
 
+export const apiGetProjectilData = (data) => {
+  return {
+    type: API_PROJECTIL_GET_DATA,
+    payload: data,
+  };
+};
+
+export const apiProjectilDataError = (error) => {
+  return {
+    type: API_PROJECTIL_ERROR,
+    payload: error,
+  };
+};
+
 export const setConfigure = ({ name, port, baudrate }) => {
   return (dispatch) => {
     axios
@@ -245,6 +261,34 @@ export const deleteConfigure = (id) => {
   return (dispatch) => {
     axios
       .delete(`http://localhost:3001/v2/config/delete?id=${id}`)
+      .then((res) => console.log(res))
+      .catch((err) => dispatch(apiError(err)));
+  };
+};
+
+export const getProjectilData = () => {
+  return (dispatch) => {
+    axios
+      .get("http://localhost:3001/v2/proyektil/get")
+      .then((res) => {
+        const projectilData = res.data;
+        dispatch(apiGetProjectilData(projectilData));
+      })
+      .catch((err) => {
+        dispatch(apiProjectilDataError(err));
+      });
+  };
+};
+
+export const editProjectileConfigure = ({ id, radius, mass, initVelo }) => {
+  return (dispatch) => {
+    axios
+      .patch(`http://localhost:3001/v2/proyektil/patch?id=${id}`, {
+        id: id,
+        radius: radius,
+        mass: mass,
+        v0: initVelo,
+      })
       .then((res) => console.log(res))
       .catch((err) => dispatch(apiError(err)));
   };
