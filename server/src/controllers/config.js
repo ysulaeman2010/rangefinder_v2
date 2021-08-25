@@ -1,5 +1,5 @@
 const db = require("nedb");
-// const mqtt = require("mqtt");
+const mqtt = require("mqtt");
 const { customAlphabet } = require("nanoid");
 const fun = require("../utils/functions");
 
