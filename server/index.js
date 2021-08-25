@@ -96,7 +96,7 @@ io.on("connection", async (socket) => {
     fun.sendData_c2(socket);
 
     socket.on("c3", (data) => {
-      console.log(data);
+      // console.log(data);
 
       // dummy data c1
       fun.sendData_c3(socket, data);
