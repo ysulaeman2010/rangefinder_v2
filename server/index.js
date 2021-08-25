@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const serveStatic = require("serve-static");
+const mqtt = require("mqtt");
 const axios = require("axios");
 const path = require("path");
 
@@ -36,29 +37,45 @@ server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}...`);
 });
 
-var pengamat = [];
-var dummy = [];
+var pengamats = [];
+var dummies = [];
+
+const mqttClient = mqtt.connect("mqtt://127.0.0.1:1883");
+
+mqttClient.on("connect", function () {
+  mqttClient.subscribe("pconf");
+});
+
+mqttClient.on("message", function (topic, message) {
+  try {
+    console.log(`Receive ${message} from ${topic}`)
+    if (message.toString() === "1") {
+      axios.get("http://localhost:3001/v2/config/get")
+      .then(res => {
+        pengamats = res.data;
+        console.log(pengamats);
+      })
+      .catch(error => console.error(error))
+    }
+  } catch (err) {
+    console.error(err);
+  }
+});
 
 io.on("connection", async (socket) => {
   try {
     console.log(`A new client connected with id ${socket.id}`);
 
     var tempP = await axios.get("http://localhost:3001/v2/config/get");
-    pengamat = tempP.data;
-    // console.log(pengamat);
-    /* database.find({}, (err, data) => {
-      if (err) {
-        console.error(err);
-      }
-      pengamat = data;
-    }); */
+    pengamats = tempP.data;
+    // console.log(pengamats);
 
     // handle the event sent with socket.send()
     socket.on("p", (data) => {
       // console.log(data);
 
       // dummy data p
-      var nomor = pengamat.findIndex((p) => p._id === data.id);
+      var nomor = pengamats.findIndex((p) => p._id === data.id);
       if (nomor + 1 === 1) {
         // console.log("p1");
         fun.sendData_p1(socket, data);
