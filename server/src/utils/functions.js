@@ -24,7 +24,7 @@ const time = () => {
   return (t_p = [t_, time].join(", "));
 };
 
-//d function
+// d function
 
 const sendData_d1 = (socket, d1data) => {
   const loc_rf1 = randomLocation.randomCirclePoint(centrePoint, 1500);
@@ -94,7 +94,7 @@ const sendData_d4 = (socket, d4data) => {
   }, 5000); */
 };
 
-//p function
+// p function
 
 const sendData_p1 = (socket, p1data) => {
   /* const t_p1 = time();
@@ -240,10 +240,10 @@ const sendData_p4 = (socket, p4data) => {
   }, 5000); */
 };
 
-//c function
+// c function
 
 const sendData_c1 = (socket, c1data) => {
-  const wind_speed_c1 = random.float(0, 100);
+  /* const wind_speed_c1 = random.float(0, 100);
   const wind_dir_c1 = random.float(0, 100);
   const temp_c1 = random.float(20, 40);
   const humid_c1 = random.float(90, 100);
@@ -257,9 +257,9 @@ const sendData_c1 = (socket, c1data) => {
     temp_c1: temp_c1.toFixed(2),
     humid_c1: humid_c1.toFixed(2),
     press_c1: press_c1.toFixed(2),
-  };
+  }; */
 
-  socket.emit("c_1", data);
+  socket.broadcast.emit("c_1", c1data);
 
   /* setTimeout(() => {
     sendData_c1(socket);
@@ -283,14 +283,16 @@ const sendData_c2 = (socket) => {
   }, 1000);
 };
 
-const sendData_c3 = (socket) => {
-  si.battery().then((data) => {
+const sendData_c3 = (socket, c3data) => {
+  /* si.battery().then((data) => {
     socket.emit("c_3", data);
   });
 
   setTimeout(() => {
     sendData_c3(socket);
-  }, 5000);
+  }, 5000); */
+
+  socket.broadcast.emit("c_3", c3data);
 };
 
 const sendData_c4 = (socket) => {

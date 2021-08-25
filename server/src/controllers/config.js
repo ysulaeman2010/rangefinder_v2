@@ -9,8 +9,9 @@ const database = new db("database.db");
 database.loadDatabase();
 
 var conn = false;
+var change = false;
 
-/* const client = mqtt.connect("mqtt://127.0.0.1");
+const client = mqtt.connect("mqtt://127.0.0.1:1883");
 client.on("connect", function () {
   conn = true;
 });
@@ -19,13 +20,21 @@ client.on("disconnect", (err) => {
   conn = false;
 });
 
+client.on("reconnect", (err) => {
+  conn = true;
+  if (change) {
+    client.publish("pconf", change.toString());
+    change = false;
+  }
+});
+
 client.on("offline", (err) => {
   conn = false;
 });
 
 client.on("error", (err) => {
   conn = false;
-}); */
+});
 
 exports.postData = (req, res, next) => {
   const name = req.body.name;
@@ -40,19 +49,15 @@ exports.postData = (req, res, next) => {
     baudrate: baudrate,
   };
 
-  /* console.log(result);
-  conn
-    ? client.publish(
-        "pconf",
-        JSON.stringify({
-          stat: "add",
-          id: result._id,
-          port: result.port,
-          baudrate: result.baudrate,
-        })
-      )
-    : (result = result); */
+  // console.log(result);
   database.insert(result);
+
+  change = true;
+
+  if (conn) {
+    client.publish("pconf", "1");
+    change = false;
+  }
 
   res.status(201).json(result);
   next();
@@ -102,16 +107,11 @@ exports.patchData = (req, res, next) => {
             res.json(error);
             return;
           }
-          /* conn
-            ? client.publish(
-                "pconf",
-                JSON.stringify({
-                  stat: "mod",
-                  id: req.query.id,
-                  port: req.body.port,
-                })
-              )
-            : (replaced = replaced); */
+          change = true;
+          if (conn) {
+            client.publish("pconf", "1");
+            change = false;
+          }
           res.status(200).send("");
           next();
         }
@@ -129,16 +129,11 @@ exports.patchData = (req, res, next) => {
             res.json(error);
             return;
           }
-          /* conn
-            ? client.publish(
-                "pconf",
-                JSON.stringify({
-                  stat: "mod",
-                  id: req.query.id,
-                  baudrate: req.body.baudrate,
-                })
-              )
-            : (replaced = replaced); */
+          change = true;
+          if (conn) {
+            client.publish("pconf", "1");
+            change = false;
+          }
           res.status(200).send("");
           next();
         }
@@ -156,17 +151,11 @@ exports.patchData = (req, res, next) => {
             res.json(error);
             return;
           }
-          /* conn
-            ? client.publish(
-                "pconf",
-                JSON.stringify({
-                  stat: "mod",
-                  id: req.query.id,
-                  port: req.body.port,
-                  baudrate: req.body.baudrate,
-                })
-              )
-            : (replaced = replaced); */
+          change = true;
+          if (conn) {
+            client.publish("pconf", "1");
+            change = false;
+          }
           res.status(200).send(replaced);
           next();
         }
@@ -193,13 +182,11 @@ exports.deleteData = (req, res, next) => {
 
         return;
       }
-      /* conn
-        ? client.publish(
-            "pconf",
-            JSON.stringify({ stat: "del", id: req.query.id })
-          )
-        : (removed = removed); */
-
+      change = true;
+      if (conn) {
+        client.publish("pconf", "1");
+        change = false;
+      }
       res.status(200).send("");
       next();
     });

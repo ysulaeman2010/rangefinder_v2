@@ -1,14 +1,2 @@
-{"timestamp":"28/5/2021, 10:53:28 PM","_id":"48ma77ihndrfzpqp","name":"Deny","port":"/dev/ttyUSB1","baudrate":"9600"}
-{"timestamp":"24/5/2021, 02:53:25 PM","_id":"4r2h0x4j2qw4iods","name":"Yangki","port":"/dev/ttyUSB3","baudrate":"9600"}
+{"timestamp":"28/5/2021, 10:53:28 PM","_id":"48ma77ihndrfzpqp","name":"Deny","port":"/dev/ttyUSB0","baudrate":"9600"}
 {"timestamp":"24/5/2021, 02:53:33 PM","_id":"jk779ubocftztsei","name":"Dimas","port":"/dev/ttyUSB2","baudrate":"9600"}
-{"timestamp":"13/7/2021, 01:41:59 PM","_id":"23azhghbe7jik9hq","name":"Test","port":"/dev/ttyUSB3","baudrate":"1"}
-{"$$deleted":true,"_id":"23azhghbe7jik9hq"}
-{"timestamp":"13/7/2021, 01:44:13 PM","_id":"ufqy2ubfwlh3r251","name":"test","port":"/dev/ttyUSB3","baudrate":"9700"}
-{"$$deleted":true,"_id":"ufqy2ubfwlh3r251"}
-{"timestamp":"13/7/2021, 01:46:20 PM","_id":"p10iuddox2of9nxw","name":"test","port":"/dev/ttyUSB3","baudrate":"1"}
-{"$$deleted":true,"_id":"p10iuddox2of9nxw"}
-{"timestamp":"13/7/2021, 01:47:21 PM","_id":"v6ece60kpx6i0vt1","name":"test","port":"/dev/ttyUSB3","baudrate":"11"}
-{"$$deleted":true,"_id":"v6ece60kpx6i0vt1"}
-{"timestamp":"13/7/2021, 01:47:32 PM","_id":"7a5uljkkb4fc4iud","name":"estt","port":"/dev/ttyUSB3","baudrate":"11"}
-{"$$deleted":true,"_id":"7a5uljkkb4fc4iud"}
-{"$$deleted":true,"_id":"4r2h0x4j2qw4iods"}
