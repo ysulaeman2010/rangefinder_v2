@@ -53,7 +53,7 @@ mqttClient.on("message", function (topic, message) {
       axios.get("http://localhost:3001/v2/config/get")
       .then(res => {
         pengamats = res.data;
-        console.log(pengamats);
+        // console.log(pengamats);
       })
       .catch(error => console.error(error))
     }
