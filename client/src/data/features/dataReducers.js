@@ -30,10 +30,26 @@ import {
 const initialState = {
   status: false,
   fetch_status: false,
-  d_1: {},
-  d_2: {},
-  d_3: {},
-  d_4: {},
+  d_1: {
+    lat: 0,
+    lng: 0,
+    alti: 0
+  },
+  d_2: {
+    lat: 0,
+    lng: 0,
+    alti: 0
+  },
+  d_3: {
+    lat: 0,
+    lng: 0,
+    alti: 0
+  },
+  d_4: {
+    lat: 0,
+    lng: 0,
+    alti: 0
+  },
   p_1: {
     id: null,
     time: 0,

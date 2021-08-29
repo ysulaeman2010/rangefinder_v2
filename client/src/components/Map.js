@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getConfigure } from "../data";
 import { MapContainer, TileLayer, Marker, useMap, Popup } from "react-leaflet";
 import L from "leaflet";
+import DummyIcon from "../assets/dot.png";
 import SoldierIcon from "../assets/soldier.png";
 import TankIcon from "../assets/tank.png";
 import { TankPos } from "../utils/functions";
@@ -31,6 +32,13 @@ const MapScale = () => {
 };
 
 const Map = () => {
+  const Dummy = new L.Icon({
+    iconUrl: DummyIcon,
+    iconRetinaUrl: DummyIcon,
+    popupAnchor: [-0, -0],
+    iconSize: [20, 20],
+  });
+
   const Soldier = new L.Icon({
     iconUrl: SoldierIcon,
     iconRetinaUrl: SoldierIcon,
@@ -53,21 +61,31 @@ const Map = () => {
   }, []);
 
   const dataPengamat = [data.p_1, data.p_2, data.p_3, data.p_4];
+  const dataDummy = [data.d_1, data.d_2, data.d_3, data.d_4];
 
   const activeIndex = dataPengamat.findIndex(
     (pengamat) => pengamat.id !== null
   );
 
-  console.log(dataPengamat);
+  console.log('Data Pengamat', dataPengamat);
+  console.log('Data Dummy', dataDummy);
 
-  const center = dataPengamat.filter(
+  let center = dataPengamat.filter(
     (item) => item.lat && item.lng !== 0
   ).length;
 
-  const center_lat =
-    dataPengamat.reduce((a, b) => ({ lat: a.lat + b.lat })).lat / center;
-  const center_lng =
-    dataPengamat.reduce((a, b) => ({ lng: a.lng + b.lng })).lng / center;
+  center += dataDummy.filter(
+    (item) => item.lat && item.lng !== 0
+  ).length;
+
+  console.log('Number of Center', center);
+
+  let center_lat = dataPengamat.reduce((a, b) => ({ lat: Number(a.lat) + Number(b.lat) })).lat / center;
+  center_lat += dataDummy.reduce((a, b) => ({ lat: Number(a.lat) + Number(b.lat) })).lat / center;
+  let center_lng = dataPengamat.reduce((a, b) => ({ lng: Number(a.lng) + Number(b.lng) })).lng / center;
+  center_lng += dataDummy.reduce((a, b) => ({ lng: Number(a.lng) + Number(b.lng) })).lng / center;
+
+  console.log('Center', '(' + center_lat + ',' + center_lng + ')');
 
   return (
     <MapContainer
@@ -133,6 +151,23 @@ const Map = () => {
             )}
           </React.Fragment>
         ))}
+
+        {dataDummy
+          .filter((item) => item.lat && item.lng !== 0)
+          .map((dummy, index) => (
+            <React.Fragment key={index}>
+              {data.get_data[index] !== undefined && (
+                <>
+                  <Marker position={[dummy.lat, dummy.lng]} icon={Dummy}>
+                    <Popup>
+                      Target ke {index + 1} <hr />
+                      Pada ketinggian {dummy.alti}
+                    </Popup>
+                  </Marker>
+                </>
+              )}
+            </React.Fragment>
+          ))}
     </MapContainer>
   );
 };

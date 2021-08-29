@@ -27,16 +27,22 @@ const time = () => {
 // d function
 
 const sendData_d1 = (socket, d1data) => {
-  const loc_rf1 = randomLocation.randomCirclePoint(centrePoint, 1500);
+  // const loc_rf1 = randomLocation.randomCirclePoint(centrePoint, 1500);
 
   // data source: d1data
 
-  const data = {
+  /* const data = {
     lat_rf1: loc_rf1["latitude"],
     lng_rf1: loc_rf1["longitude"],
+  }; */
+
+  const data = {
+    lat: d1data.lat,
+    lng: d1data.lng,
+    alti: d1data.alt
   };
 
-  socket.emit("d_1", data);
+  socket.broadcast.emit("d_1", data);
 
   /* setTimeout(() => {
     sendData_d1(socket);
@@ -44,16 +50,22 @@ const sendData_d1 = (socket, d1data) => {
 };
 
 const sendData_d2 = (socket, d2data) => {
-  const loc_rf2 = randomLocation.randomCirclePoint(centrePoint, 1500);
+  // const loc_rf2 = randomLocation.randomCirclePoint(centrePoint, 1500);
 
   // data source: d2data
 
-  const data = {
+  /* const data = {
     lat_rf2: loc_rf2["latitude"],
     lng_rf2: loc_rf2["longitude"],
+  }; */
+
+  const data = {
+    lat: d2data.lat,
+    lng: d2data.lng,
+    alti: d2data.alt
   };
 
-  socket.emit("d_2", data);
+  socket.broadcast.emit("d_2", data);
 
   /* setTimeout(() => {
     sendData_d2(socket);
@@ -61,16 +73,22 @@ const sendData_d2 = (socket, d2data) => {
 };
 
 const sendData_d3 = (socket, d3data) => {
-  const loc_rf3 = randomLocation.randomCirclePoint(centrePoint, 1500);
+  // const loc_rf3 = randomLocation.randomCirclePoint(centrePoint, 1500);
 
   // data source: d3data
 
-  const data = {
+  /* const data = {
     lat_rf3: loc_rf3["latitude"],
     lng_rf3: loc_rf3["longitude"],
+  }; */
+
+  const data = {
+    lat: d3data.lat,
+    lng: d3data.lng,
+    alti: d3data.alt
   };
 
-  socket.emit("d_3", data);
+  socket.broadcast.emit("d_3", data);
 
   /* setTimeout(() => {
     sendData_d3(socket);
@@ -78,16 +96,22 @@ const sendData_d3 = (socket, d3data) => {
 };
 
 const sendData_d4 = (socket, d4data) => {
-  const loc_rf4 = randomLocation.randomCirclePoint(centrePoint, 1500);
+  // const loc_rf4 = randomLocation.randomCirclePoint(centrePoint, 1500);
 
   // data source: d4data
 
-  const data = {
+  /* const data = {
     lat_rf4: loc_rf4["latitude"],
     lng_rf4: loc_rf4["longitude"],
+  }; */
+
+  const data = {
+    lat: d4data.lat,
+    lng: d4data.lng,
+    alti: d4data.alt
   };
 
-  socket.emit("d_4", data);
+  socket.broadcast.emit("d_4", data);
 
   /* setTimeout(() => {
     sendData_d4(socket);

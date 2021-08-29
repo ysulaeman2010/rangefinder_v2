@@ -96,10 +96,20 @@ io.on("connection", async (socket) => {
       // console.log(data);
 
       // dummy data d
-      fun.sendData_d1(socket, data);
-      fun.sendData_d2(socket, data);
-      fun.sendData_d3(socket, data);
-      fun.sendData_d4(socket, data);
+      if (data.id === 'Dum001') {
+        console.log('Dum001', data);
+        fun.sendData_d1(socket, data);
+      } else if (data.id === 'Dum002') {
+        console.log('Dum002', data);
+        fun.sendData_d2(socket, data);
+      } else if (data.id === 'Dum003') {
+        console.log('Dum003', data);
+        fun.sendData_d3(socket, data);
+      } else if (data.id === 'Dum004') {
+        console.log('Dum004', data);
+        fun.sendData_d4(socket, data);
+      }
+
     });
 
     // handle the event sent with socket.send()
