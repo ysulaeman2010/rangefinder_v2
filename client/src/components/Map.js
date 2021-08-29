@@ -67,8 +67,8 @@ const Map = () => {
     (pengamat) => pengamat.id !== null
   );
 
-  console.log('Data Pengamat', dataPengamat);
-  console.log('Data Dummy', dataDummy);
+  // console.log('Data Pengamat', dataPengamat);
+  // console.log('Data Dummy', dataDummy);
 
   let center = dataPengamat.filter(
     (item) => item.lat && item.lng !== 0
@@ -78,7 +78,7 @@ const Map = () => {
     (item) => item.lat && item.lng !== 0
   ).length;
 
-  console.log('Number of Center', center);
+  // console.log('Number of Center', center);
 
   let center_lat = dataPengamat.reduce((a, b) => ({ lat: Number(a.lat) + Number(b.lat) })).lat / center;
   center_lat += dataDummy.reduce((a, b) => ({ lat: Number(a.lat) + Number(b.lat) })).lat / center;

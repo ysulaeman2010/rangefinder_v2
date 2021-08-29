@@ -97,16 +97,16 @@ io.on("connection", async (socket) => {
 
       // dummy data d
       if (data.id === 'Dum001') {
-        console.log('Dum001', data);
+        // console.log('Dum001', data);
         fun.sendData_d1(socket, data);
       } else if (data.id === 'Dum002') {
-        console.log('Dum002', data);
+        // console.log('Dum002', data);
         fun.sendData_d2(socket, data);
       } else if (data.id === 'Dum003') {
-        console.log('Dum003', data);
+        // console.log('Dum003', data);
         fun.sendData_d3(socket, data);
       } else if (data.id === 'Dum004') {
-        console.log('Dum004', data);
+        // console.log('Dum004', data);
         fun.sendData_d4(socket, data);
       }
 
